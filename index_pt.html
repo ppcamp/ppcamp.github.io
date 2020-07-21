@@ -32,40 +32,6 @@
         border: 5px rgba(0, 0, 0, 0);
       }
 
-      /* The Modal (background) */
-      .modal {
-        --btnColor: #312450;
-
-        color: darkslategrey;
-        display: block; /* Hidden by default */
-        position: fixed; /* Stay in place */
-        z-index: 100000; /* Sit on top */
-        left: 0;
-        top: 0;
-        width: 100%; /* Full width */
-        height: 100%; /* Full height */
-        overflow: auto; /* Enable scroll if needed */
-        background-color: rgb(0, 0, 0); /* Fallback color */
-        background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
-      }
-
-      /* Modal Content/Box */
-      .modal-content {
-        background-color: white;
-        margin: 15% auto; /* 15% from the top and centered */
-        padding: 2rem;
-        border: 1px solid #888;
-        width: 80%; /* Could be more or less, depending on screen size */
-      }
-      .modal-content .button {
-        background-color: var(--btnColor);
-      }
-      .modal-content h3 {
-        margin: auto;
-        text-align: center;
-        color: var(--btnColor);
-      }
-
       /* CPP logo */
       #cpp {
         width: 4.5%;
@@ -454,23 +420,5 @@
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
-
-    <script type="text/javascript">
-      // Get english button
-      var langEng = document.getElementById("langEng");
-
-      // Get modal
-      var modal = document.getElementsByClassName("modal")[0];
-
-      // Creates a variable to mantain the current lang
-      if (localStorage["checked"]) {
-        modal.style.display = "none";
-      }
-
-      langEng.onclick = function () {
-        modal.style.display = "none";
-        localStorage["checked"] = true;
-      };
-    </script>
   </body>
 </html>

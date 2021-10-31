@@ -1,7 +1,7 @@
 ---
 title: "About"
 date: 2021-10-31T13:05:15-03:00
-draft: true
+draft: false
 menu: "main"
 # weight: 50
 # description: "A few years ago, while visiting or, rather, rummaging about Notre-Dame, the author of this book found, in an obscure nook of one of the towers, the following word, engraved by hand upon the wall: —ANANKE."

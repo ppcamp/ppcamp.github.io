@@ -1,7 +1,7 @@
 ---
 title: "Skills"
 date: 2021-10-31T13:25:11-02:00
-draft: true
+draft: false
 menu: "main"
 weight: 1
 featured_image: ''

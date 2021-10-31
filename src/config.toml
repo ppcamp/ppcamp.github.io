@@ -1,0 +1,4 @@
+baseURL = 'https://ppcamp.github.io'
+languageCode = 'en-us'
+title = 'ppcamp'
+theme = "ananke"

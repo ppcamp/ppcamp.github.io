@@ -1,7 +1,7 @@
 ---
-title: "Ananke: a Hugo Theme"
-featured_image: '/images/gohugo-default-sample-hero-image.jpg'
-description: "My personal blog"
+title: "___"
+featured_image: '/images/cover.png'
+description: "Home"
 ---
 
 Welcome to my blog with some of my work in progress.

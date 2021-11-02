@@ -1,5 +1,5 @@
 ---
-title: "About"
+title: "About me"
 date: 2021-10-31T13:05:15-03:00
 draft: false
 menu: "main"
@@ -22,3 +22,9 @@ Part of my motivation it’s because of idea that I have which the knowledge mus
 
 ## Teacher
 As a teacher, if I follow this way, I pretend to teach ‘bout themes like programming or mathemathics.
+
+---
+
+## Send me an email
+
+{{< form-contact action="https://formspree.io/f/mrgrwqpk" >}}

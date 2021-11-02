@@ -10,6 +10,7 @@ SectionPagesMenu = "main"
 Paginate = 5 # this is set low for demonstrating with dummy content. Set to a higher number
 googleAnalytics = ""
 enableRobotsTXT = true
+disqusShortname = "ppcamp"
 
 [languages]
   [languages.en]
@@ -42,3 +43,5 @@ enableRobotsTXT = true
   #background_color_class = ""
   #featured_image = "./images/gohugo-default-sample-hero-image.jpg"
   recent_posts_number = 3
+  commentoEnable = true
+  custom_css = ["custom.css"]

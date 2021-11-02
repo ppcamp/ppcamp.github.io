@@ -40,7 +40,7 @@ disqusShortname = "ppcamp"
   stackoverflow = ""
   rss = ""
   recent_posts_number = 3
-  commentoEnable = true
+  commentoEnable = false
   custom_css = ["custom.css"]
 
   # choose a background color from any on this page: http://tachyons.io/docs/themes/skins/ and preface it with "bg-"

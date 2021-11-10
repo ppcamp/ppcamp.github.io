@@ -1,0 +1,25 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"label": "hugo: run",
+				"type": "shell",
+				"command": "cd src && hugo server -w -D --disableFastRender",
+				"problemMatcher": []
+			},
+			{
+				"label": "hugo: build",
+				"type": "shell",
+				"command": "cd src && hugo",
+				"problemMatcher": []
+			}
+		]
+	}
+}

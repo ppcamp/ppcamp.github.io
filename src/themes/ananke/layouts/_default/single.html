@@ -18,14 +18,14 @@
       <h1 class="f1 athelas mt3 mb1">
         {{- .Title -}}
       </h1>
-      {{ with .Params.author | default .Site.Params.author }}
+      {{ with .Params.authors | default .Site.Params.authors }}
       <p class="tracked">
           By <strong>
-          {{ if reflect.IsSlice . }}
-              {{ delimit . ", " | markdownify }}
-          {{else}}
-              {{ . | markdownify }}
-          {{ end }}
+            {{ if reflect.IsSlice . }}
+                {{ delimit . ", " | markdownify }}
+            {{else}}
+                {{ . | markdownify }}
+            {{ end }}
           </strong>
       </p>
       {{ end }}

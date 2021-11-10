@@ -11,6 +11,21 @@ Paginate = 9
 googleAnalytics = ""
 enableRobotsTXT = true
 disqusShortname = "ppcamp"
+tags = ["website", "starter", "responsive", "Disqus", "blog", "tech", "programmer", "developer"]
+features = ["posts", "shortcodes", "related content", "comments"]
+description = "A tech website to share some of my knowledge"
+homepage = "https://ppcamp.github.io/"
+name = "ppcamp"
+
+[authors]
+  name = "ppcamp"
+  homepage = "https://www.thenewdynamic.com/"
+
+
+[taxonomies]
+  author = "authors"
+  tag = "tags"
+  category = "categories"
 
 [languages]
   [languages.en]
@@ -39,7 +54,7 @@ disqusShortname = "ppcamp"
     tabWidth = 2
 
 [params]
-  author = ""
+  authors = ["ppcamp"]
   favicon = "./images/favicon.ico"
   site_logo = ""
   description = "ppcamp's blog"

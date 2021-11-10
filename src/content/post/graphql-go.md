@@ -6,7 +6,6 @@ tags: ["graphql", "go", "graphql-go", "controllers", "project structure"]
 featured_image: "/images/graphql-go_1.png"
 title: "Graphql go"
 description: "A simple Golang idiomatic GraphQL approach"
-author: ppcamp
 ---
 
 # What's this so well know graphql?

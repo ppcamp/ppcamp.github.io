@@ -1,11 +1,12 @@
 ---
-date: 2021-11-05T20:42:44-03:00
-title: "Graphql Go"
-featured_image: "/images/graphql-go_1.png"
-tags: ["graphql", "go"]
-title: "Graphql-go"
-description: "A simple Golang idiomatic GraphQL approach"
+date: 2021-11-05T00:00:00-00:00
+lastmod: 2021-11-10T20:42:44-03:00
 show_reading_time: true
+tags: ["graphql", "go", "graphql-go", "controllers", "project structure"]
+featured_image: "/images/graphql-go_1.png"
+title: "Graphql go"
+description: "A simple Golang idiomatic GraphQL approach"
+author: ppcamp
 ---
 
 # What's this so well know graphql?
@@ -18,6 +19,7 @@ Take a look in those articles below:
 - https://blog.logrocket.com/why-you-shouldnt-use-graphql/
 - https://www.apollographql.com/docs/react/data/operation-best-practices/
 - https://graphql.org/
+- https://www.youtube.com/watch?v=epKhPB9PJqY&ab_channel=Simplilearn
 
 
 But, personally, what I think about it:

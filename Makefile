@@ -18,6 +18,9 @@ build:
 	@echo ""
 	@echo "2. Building hugo"
 	cd src && hugo --destination=../public
+	@echo ""
+	@echo "3. Adding the index file"
+	@echo "<?php header( 'Location: /index.html' ); ?>" > ./public/index.php
 	@echo "Finished!"
 
 ## run: Run a local server watching for changes

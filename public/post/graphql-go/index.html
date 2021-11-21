@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    
+    <title>ppcamp</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="A simple Golang idiomatic GraphQL approach">
+    <meta name="generator" content="Hugo 0.89.4" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+  
+
+
+    
+      
+<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+
+
+    
+
+    
+
+    <meta property="og:title" content="Graphql go" />
+<meta property="og:description" content="A simple Golang idiomatic GraphQL approach" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ppcamp.github.io/post/graphql-go/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-11-05T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-11-10T20:42:44-03:00" /><meta property="og:site_name" content="ppcamp" />
+
+<meta itemprop="name" content="Graphql go">
+<meta itemprop="description" content="A simple Golang idiomatic GraphQL approach"><meta itemprop="datePublished" content="2021-11-05T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2021-11-10T20:42:44-03:00" />
+<meta itemprop="wordCount" content="2816">
+<meta itemprop="keywords" content="graphql,go,graphql-go,controllers,project structure," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Graphql go"/>
+<meta name="twitter:description" content="A simple Golang idiomatic GraphQL approach"/>
+
+	<meta name="google-site-verification" content="-7z3LyXgISJuF4MIJXX9Vk9JW6M5M4-KW8a-Ps4FJDw" />
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  
+  
+  <header class="cover bg-top" style="background-image: url('https://ppcamp.github.io/images/graphql-go_1.png');">
+    <div class="pb3-m pb6-l bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        ppcamp
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/skills/" title="Skills page">
+              Skills
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="About me page">
+              About me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/post/" title="Articles page">
+              Articles
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <h1 class="f2 f1-l fw2 white-90 mb0 lh-title">Graphql go</h1>
+          
+            <h2 class="fw1 f5 f3-l white-80 measure-wide-l center lh-copy mt3 mb4">
+              A simple Golang idiomatic GraphQL approach
+            </h2>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        ARTICLES
+      </aside>
+      
+
+
+
+
+  <div id="sharing" class="mt3">
+
+    
+    <a href="https://www.facebook.com/sharer.php?u=https://ppcamp.github.io/post/graphql-go/" class="facebook no-underline" aria-label="share on Facebook">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+
+    </a>
+
+    
+    
+    <a href="https://twitter.com/share?url=https://ppcamp.github.io/post/graphql-go/&amp;text=Graphql%20go" class="twitter no-underline" aria-label="share on Twitter">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+    </a>
+
+    
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://ppcamp.github.io/post/graphql-go/&amp;title=Graphql%20go" class="linkedin no-underline" aria-label="share on LinkedIn">
+      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+    </a>
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">Graphql go</h1>
+      
+      <p class="tracked">
+          By <strong>
+            
+                ppcamp
+            
+          </strong>
+      </p>
+      
+
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2021-11-05T00:00:00Z">
+        <b>Created at: </b>November 5, 2021
+          <b> | Updated at: </b>November 10, 2021
+
+      </time>
+      
+
+
+      
+      
+        <span class="f6 mv4 dib tracked"> <b>|</b> 14 minutes read </span>
+        <span class="f6 mv4 dib tracked"> <b>|</b> 2816 words </span>
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><h1 id="whats-this-so-well-know-graphql">What&rsquo;s this so well know graphql?</h1>
+<p>Go&rsquo;tcha, I won&rsquo;t discuss about this at all LoL.</p>
+<p>Take a look in those articles below:</p>
+<ul>
+<li><a href="https://www.moesif.com/blog/technical/graphql/REST-vs-GraphQL-APIs-the-good-the-bad-the-ugly/">https://www.moesif.com/blog/technical/graphql/REST-vs-GraphQL-APIs-the-good-the-bad-the-ugly/</a></li>
+<li><a href="https://blog.logrocket.com/why-you-shouldnt-use-graphql/">https://blog.logrocket.com/why-you-shouldnt-use-graphql/</a></li>
+<li><a href="https://www.apollographql.com/docs/react/data/operation-best-practices/">https://www.apollographql.com/docs/react/data/operation-best-practices/</a></li>
+<li><a href="https://graphql.org/">https://graphql.org/</a></li>
+<li><a href="https://www.youtube.com/watch?v=epKhPB9PJqY&amp;ab_channel=Simplilearn">https://www.youtube.com/watch?v=epKhPB9PJqY&amp;ab_channel=Simplilearn</a></li>
+</ul>
+<p>But, personally, what I think about it:</p>
+<p>Good points:</p>
+<ul>
+<li>It can be interesting when the amount of data of each request is relevant (mobile/lightweight apps)</li>
+<li>It can be interesting doing to the reuse of existent resolvers for our types (you&rsquo;ll see an example in this <a href="https://github.com/ppcamp/go-graphql-with-auth">project</a>)</li>
+<li>It&rsquo;s easier to the backend developer to handle with the errors (without worring about status codes, padronized response bodies and go on)</li>
+<li>It&rsquo;s interesting to have a panel where you can see all available types/queries/mutations and its descriptions</li>
+</ul>
+<p>Bad points:</p>
+<ul>
+<li>It&rsquo;s &ldquo;a pain in the ass&rdquo; be limited about the folder structure to the resolver and types (due to the &ldquo;cyclic problem&rdquo;)</li>
+<li>If you mess it up when doing the type, you can allow a huge query that can be used, which will took very processing time.</li>
+<li>Compared to the default http, problably you&rsquo;ll need much more resources in your application.</li>
+</ul>
+<h1 id="project">Project</h1>
+<p>To better understand what&rsquo;s the biggest bennefits and how to use a graphql
+approach I&rsquo;ll show, in the next sections, how I developed a simple graphql
+server.</p>
+<p>To be more intuitive I&rsquo;ll follow a flux defined by me self, if you got lost in
+some part you can just use the <a href="https://github.com/ppcamp/go-graphql-with-auth">project</a> and check it out the full code.</p>
+<p><strong>NOTE</strong> that I won&rsquo;t explain every little detail, I&rsquo;ll give focus on some
+of my thoughts during the deployment.</p>
+<h2 id="project-structure">Project structure</h2>
+<p>At first, I&rsquo;ve tried the &ldquo;components&rdquo; folder structure, I mean, I&rsquo;ve tried to
+split the handlers into each specific folder, however, due to the &ldquo;resolvers&rdquo;
+you&rsquo;ll problably get stuck when you tried to create a field that&rsquo;s actually
+another type and has it&rsquo;s own resolve. This will cause a cyclic import problem
+and, since golang <a href="https://medium.com/@ishagirdhar/import-cycles-in-golang-b467f9f0c5a0">doesn&rsquo;t have a fancy</a>
+way to bypass this like <a href="https://docs.nestjs.com/fundamentals/circular-dependency">NestJs</a>,
+i think that&rsquo;s the not best practice and furthermore, I&rsquo;ll changed it in the
+future for something like:</p>
+<p>By know, the handlers <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> of this code is something like this:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>And I&rsquo;ll change it to be more like this (which i think that will solve the
+cyclic dependency):</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Let&rsquo;s skip this small talk and get in into the point.</p>
+<h2 id="hows-the-project-currently">Hows the project currently</h2>
+<p>By now, the project has the following folder structure:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Let&rsquo;s dive in.</p>
+<h2 id="cmd">CMD</h2>
+<p>In this folder/package, we have all methods used by the main function, which
+includes registering http middlewares and endpoints and go on.</p>
+<p>To manage all app variables I&rsquo;m using the <a href="https://github.com/urfave/cli">cli</a> and yes, I won&rsquo;t be doing many
+handwriting job, I mean, if already exists a naive solution, <strong>WHY SHOULD I</strong>
+<strong>TAKE THE HARDER WAY?</strong>.</p>
+<p>Of course, sometimes you just need 1 variable and,
+get a package just to this won&rsquo;t be justified. However, that&rsquo;s not the case
+here. I wan&rsquo;t to have full control of my variables and have the possibility
+of change each one of them without needing to rebuild all my project.
+So, my <strong>main.go</strong> is:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-go" data-lang="go"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#204a87;font-weight:bold">package</span> <span style="color:#000">main</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000;font-weight:bold">(</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span>	<span style="color:#4e9a06">&#34;os&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span>	<span style="color:#4e9a06">&#34;github.com/ppcamp/go-graphql-with-auth/internal/config&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span>	<span style="color:#000">postgres</span> <span style="color:#4e9a06">&#34;github.com/ppcamp/go-graphql-with-auth/internal/repository&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span>	<span style="color:#4e9a06">&#34;github.com/sirupsen/logrus&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span>	<span style="color:#4e9a06">&#34;github.com/urfave/cli/v2&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span style="color:#204a87;font-weight:bold">func</span> <span style="color:#000">main</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span>	<span style="color:#000">app</span> <span style="color:#ce5c00;font-weight:bold">:=</span> <span style="color:#000">cli</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">NewApp</span><span style="color:#000;font-weight:bold">()</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span>	<span style="color:#000">app</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Name</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;go-graphql-user&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span>	<span style="color:#000">app</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Usage</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;Build the file and execute it and then, make some graphql calls&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span>	<span style="color:#000">app</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Flags</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#000">config</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Flags</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span>	<span style="color:#000">app</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Action</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#000">run</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span>	<span style="color:#000">app</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Run</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">os</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Args</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span style="color:#000;font-weight:bold">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span style="color:#204a87;font-weight:bold">func</span> <span style="color:#000">run</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">c</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">cli</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Context</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">error</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span>	<span style="color:#000">config</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Setup</span><span style="color:#000;font-weight:bold">()</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span>	<span style="color:#8f5902;font-style:italic">// if config.App.Migrate {
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span style="color:#8f5902;font-style:italic"></span>	<span style="color:#8f5902;font-style:italic">// 	migrate := migrations.SetupMigrations(c.App.Name, config.Database.Url)
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span style="color:#8f5902;font-style:italic"></span>	<span style="color:#8f5902;font-style:italic">// 	err := migrate.Up()
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span style="color:#8f5902;font-style:italic"></span>	<span style="color:#8f5902;font-style:italic">// 	if err != nil {
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span><span style="color:#8f5902;font-style:italic"></span>	<span style="color:#8f5902;font-style:italic">// 		logrus.WithError(err).Fatal(&#34;failed to migrate the data&#34;)
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span><span style="color:#8f5902;font-style:italic"></span>	<span style="color:#8f5902;font-style:italic">// 	}
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span><span style="color:#8f5902;font-style:italic"></span>	<span style="color:#8f5902;font-style:italic">// }
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31</span><span style="color:#8f5902;font-style:italic"></span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32</span>	<span style="color:#000">storage</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">err</span> <span style="color:#ce5c00;font-weight:bold">:=</span> <span style="color:#000">postgres</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">NewStorage</span><span style="color:#000;font-weight:bold">()</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33</span>	<span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">err</span> <span style="color:#ce5c00;font-weight:bold">!=</span> <span style="color:#204a87;font-weight:bold">nil</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34</span>		<span style="color:#000">logrus</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Fatal</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;couldn&#39;t connect to databaseql&#34;</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35</span>	<span style="color:#000;font-weight:bold">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37</span>	<span style="color:#000">r</span> <span style="color:#ce5c00;font-weight:bold">:=</span> <span style="color:#000">SetupEngine</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">storage</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38</span>	<span style="color:#000">r</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Run</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">config</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">App</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Address</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39</span>	<span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87;font-weight:bold">nil</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40</span><span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><p>The first question that you should be doing is: WHY this code is commented and
+yes, I didn&rsquo;t finished 😁</p>
+<p>The points that you should pay attention is the <strong>config.Flags</strong> and the <strong>run</strong>
+function.</p>
+<p>In the run function I&rsquo;ll be instantiating every service that will need to be
+passed through our endpoints and some stuffs like that, e.g, our database.</p>
+<p>To build our server, I&rsquo;m using the <a href="https://github.com/gin-gonic/gin">gin</a> framework. Again, <strong>DO I NEED TO USE</strong>
+<strong>GIN?</strong> NO, but i&rsquo;ll.</p>
+<p>The <strong>middleware.go</strong> is simple to unterstand, so I&rsquo;ll skip it.</p>
+<h2 id="endpoints">Endpoints</h2>
+<p>In the <strong>endpoints.go</strong> is where I declare my router/http server and it&rsquo;s
+endpoints.</p>
+<p>The main part of this function is the <strong>schema</strong> and the <strong>controllers</strong>.</p>
+<p>The <em>userController</em> and the <em>appController</em>, like I told before, problably need
+to be replaced by I single unique controller that will have all handlers.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-go" data-lang="go"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#204a87;font-weight:bold">package</span> <span style="color:#000">main</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000;font-weight:bold">(</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span>	<span style="color:#4e9a06">&#34;github.com/gin-contrib/gzip&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span>	<span style="color:#4e9a06">&#34;github.com/gin-gonic/gin&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span>	<span style="color:#4e9a06">&#34;github.com/ppcamp/go-graphql-with-auth/internal/config&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span>	<span style="color:#4e9a06">&#34;github.com/ppcamp/go-graphql-with-auth/internal/controllers/app&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span>	<span style="color:#4e9a06">&#34;github.com/ppcamp/go-graphql-with-auth/internal/controllers/user&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span>	<span style="color:#4e9a06">&#34;github.com/ppcamp/go-graphql-with-auth/internal/helpers/graphql&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span>	<span style="color:#000">postgres</span> <span style="color:#4e9a06">&#34;github.com/ppcamp/go-graphql-with-auth/internal/repository&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span>	<span style="color:#4e9a06">&#34;github.com/ppcamp/go-graphql-with-auth/internal/services/jwt&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span style="color:#204a87;font-weight:bold">func</span> <span style="color:#000">SetupEngine</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">storage</span> <span style="color:#000">postgres</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Storage</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">gin</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Engine</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span>	<span style="color:#000">router</span> <span style="color:#ce5c00;font-weight:bold">:=</span> <span style="color:#000">gin</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">New</span><span style="color:#000;font-weight:bold">()</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span>	<span style="color:#8f5902;font-style:italic">// middlewares
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span style="color:#8f5902;font-style:italic"></span>	<span style="color:#000">registerMiddlewares</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">router</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span>	<span style="color:#8f5902;font-style:italic">// handlers
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span style="color:#8f5902;font-style:italic"></span>	<span style="color:#000">schema</span> <span style="color:#ce5c00;font-weight:bold">:=</span> <span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">NewSchemaManager</span><span style="color:#000;font-weight:bold">()</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span>	<span style="color:#000">userController</span> <span style="color:#ce5c00;font-weight:bold">:=</span> <span style="color:#000">user</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">NewUserControllerBuilder</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">storage</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span>	<span style="color:#000">appController</span> <span style="color:#ce5c00;font-weight:bold">:=</span> <span style="color:#000">app</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">NewAppController</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">storage</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span>	<span style="color:#8f5902;font-style:italic">// Endpoints unprotected
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span style="color:#8f5902;font-style:italic"></span>	<span style="color:#000">schema</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">RegisterQuery</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;users&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">userController</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">QueryUsers</span><span style="color:#000;font-weight:bold">())</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span>	<span style="color:#000">schema</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">RegisterMutation</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;createUser&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">userController</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">CreateUser</span><span style="color:#000;font-weight:bold">())</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span>	<span style="color:#000">schema</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">RegisterMutation</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;login&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">userController</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Login</span><span style="color:#000;font-weight:bold">())</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span>	<span style="color:#8f5902;font-style:italic">// Endpoints protected
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31</span><span style="color:#8f5902;font-style:italic"></span>	<span style="color:#000">schema</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">RegisterAuthenticatedQuery</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;app&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">appController</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">QueryAppStatus</span><span style="color:#000;font-weight:bold">())</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32</span>	<span style="color:#000">schema</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">RegisterAuthenticatedMutation</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;updateUser&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">userController</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">EditUser</span><span style="color:#000;font-weight:bold">())</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34</span>	<span style="color:#8f5902;font-style:italic">// register
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35</span><span style="color:#8f5902;font-style:italic"></span>	<span style="color:#000">router</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Any</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;/graphql&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">schema</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Handler</span><span style="color:#000;font-weight:bold">())</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37</span>	<span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">router</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38</span><span style="color:#000;font-weight:bold">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40</span><span style="color:#204a87;font-weight:bold">func</span> <span style="color:#000">registerMiddlewares</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">router</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">gin</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Engine</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41</span>	<span style="color:#000">middleware</span> <span style="color:#ce5c00;font-weight:bold">:=</span> <span style="color:#000">NewMiddleware</span><span style="color:#000;font-weight:bold">()</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43</span>	<span style="color:#8f5902;font-style:italic">// Return 500 on panic
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44</span><span style="color:#8f5902;font-style:italic"></span>	<span style="color:#000">router</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Use</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">gin</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Recovery</span><span style="color:#000;font-weight:bold">())</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45</span>	<span style="color:#000">router</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Use</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">gzip</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Gzip</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">gzip</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">DefaultCompression</span><span style="color:#000;font-weight:bold">))</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47</span>	<span style="color:#8f5902;font-style:italic">// Response as JSON every c.Error in requests handler
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48</span><span style="color:#8f5902;font-style:italic"></span>	<span style="color:#000">router</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Use</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">middleware</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Errors</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50</span>	<span style="color:#8f5902;font-style:italic">// Handle OPTIONS and set default headers like CORS and Content-Type
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51</span><span style="color:#8f5902;font-style:italic"></span>	<span style="color:#000">router</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Use</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">middleware</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Options</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52</span>	<span style="color:#000">router</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">NoRoute</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">middleware</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">NotFound</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53</span>	<span style="color:#000">router</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">NoMethod</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">middleware</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">MethodNotAllowed</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55</span>	<span style="color:#8f5902;font-style:italic">// register a middleware to get all JWT auth
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56</span><span style="color:#8f5902;font-style:italic"></span>	<span style="color:#000">authMiddleware</span> <span style="color:#ce5c00;font-weight:bold">:=</span> <span style="color:#000">jwt</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">NewJwtMiddleware</span><span style="color:#000;font-weight:bold">(</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57</span>		<span style="color:#000">config</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">App</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">JWTExp</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000;font-weight:bold">[]</span><span style="color:#204a87">byte</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">config</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">App</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">JWTSecret</span><span style="color:#000;font-weight:bold">))</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">58</span>	<span style="color:#000">router</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Use</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">authMiddleware</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Middleware</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">59</span><span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><p>The <strong>schema</strong> is a class <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> that&rsquo;s work like a wrapper to the actual graphql
+package.</p>
+<p>Record that i have two diferent types for <strong>queries</strong> and <strong>mutations</strong>. And
+later, you&rsquo;ll understand why.</p>
+<h1 id="internal-packages">Internal packages</h1>
+<p>In this package I&rsquo;ll defined the scoped packages to this project.
+In the <strong>config</strong> package, are all our global <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup> variables that we&rsquo;ll use
+in the other packages.</p>
+<h3 id="logs">Logs</h3>
+<p>You already noted that I really like to use packages 😆. So, here comes another
+one to you. Remember when we called the <strong>config.Setup</strong> in our main?
+So, here it&rsquo;s.</p>
+<p>In this function, we setup our loggers (by the way, I&rsquo;m using
+the <a href="https://github.com/sirupsen/logrus">logrus</a> package).</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-go" data-lang="go"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#204a87;font-weight:bold">func</span> <span style="color:#000">Setup</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span>	<span style="color:#000">logrus</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">SetFormatter</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">logrus</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">JSONFormatter</span><span style="color:#000;font-weight:bold">{</span><span style="color:#000">PrettyPrint</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">App</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">LogPrettyPrint</span><span style="color:#000;font-weight:bold">})</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span>	<span style="color:#000">level</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">err</span> <span style="color:#ce5c00;font-weight:bold">:=</span> <span style="color:#000">logrus</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">ParseLevel</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">App</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">LogLevel</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span>	<span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">err</span> <span style="color:#ce5c00;font-weight:bold">!=</span> <span style="color:#204a87;font-weight:bold">nil</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span>		<span style="color:#000">logrus</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">WithError</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">err</span><span style="color:#000;font-weight:bold">).</span><span style="color:#000">Fatal</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;parsing log level&#34;</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span>	<span style="color:#000;font-weight:bold">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span>	<span style="color:#000">logrus</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">SetLevel</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">level</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span>	<span style="color:#000">logrus</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">WithFields</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">logrus</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Fields</span><span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span>		<span style="color:#4e9a06">&#34;AppConfig&#34;</span><span style="color:#000;font-weight:bold">:</span>      <span style="color:#000">App</span><span style="color:#000;font-weight:bold">,</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span>		<span style="color:#4e9a06">&#34;DatabaseConfig&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Database</span><span style="color:#000;font-weight:bold">,</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span>	<span style="color:#000;font-weight:bold">}).</span><span style="color:#000">Info</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Environment variables&#34;</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><p>Why use logrus?</p>
+<ul>
+<li>Logrus cames with a bunch of tools that make our life easier, like change the
+log level (sending all levels bellow to /dev/null) hiding the logs below.</li>
+<li>Print variables/errors easily</li>
+<li>Chaining functions</li>
+<li>and anothers features</li>
+</ul>
+<h3 id="utils-and-models">Utils and models</h3>
+<p>Again, I think that you have some knowledge about golang before reading this
+article, of course, you can learn it before, and make some minor tests.
+Take a look at <a href="https://goplay.tools/">https://goplay.tools/</a>.</p>
+<p>Basically, those are just packages that define some object/struct and some
+generic function that aren&rsquo;t truly correlated to the controllers.</p>
+<p>However, i think that&rsquo;s necessary that you understand this:</p>
+<p>When you saw something like:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-go" data-lang="go"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span style="color:#000">json</span><span style="color:#000;font-weight:bold">:</span><span style="color:#4e9a06">&#34;field,omitempty&#34;</span> <span style="color:#000">db</span><span style="color:#000;font-weight:bold">:</span><span style="color:#4e9a06">&#34;field&#34;</span> <span style="color:#000">binding</span><span style="color:#000;font-weight:bold">:</span><span style="color:#4e9a06">&#34;omitempty,min=3&#34;</span>
+</code></pre></div><p>It means that the package will be marshalized/unmarshilzed basing on this
+&ldquo;field&rdquo; key and, it can not to be in the object. And, when using the <a href="http://jmoiron.github.io/sqlx/">sqlx</a> pkg,
+it&rsquo;ll use the field as &ldquo;:field&rdquo; in the sql/internal marshaller.</p>
+<p>The binding are actually, a <a href="https://github.com/go-playground/validator">validator</a>. In this case, it won&rsquo;t allow a field
+with 3 or less characters, however, due to omitempty, it allows you to don&rsquo;t
+send this field and, therefore, won&rsquo;t throw an error validation in this case.</p>
+<h2 id="repositories-and-database-connections">Repositories and database connections</h2>
+<p>The <strong>repository</strong> package was build in this way to allow you an easy way to
+mock this repository for tests (I do recommend the <a href="https://github.com/stretchr/testify">testify</a> library).</p>
+<h2 id="servicesjwt">Services/jwt</h2>
+<p>Since we won&rsquo;t have control of the request due to the handler wrapper, I&rsquo;ll
+use a middleware that will register all headers in the request context for each
+received request.</p>
+<p>And, when we need to get the token we just validate if there&rsquo;s one in the
+content.</p>
+<h2 id="controllers">Controllers</h2>
+<p>I won&rsquo;t explain detailed each one of the files here, since they are very simple
+to understand. Let&rsquo;s move on.</p>
+<h1 id="helpers">helpers</h1>
+<p>AND HERE IT IS. THE MAIN PACKAGE. THE SOUL OF THIS PROJECT LoL.</p>
+<p>In this package i define the main subpackages used by the other functions.</p>
+<h2 id="validators">validators</h2>
+<p>In the <strong>bind.go</strong> I convert the graphql map into structs, and validate its
+fields.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-go" data-lang="go"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#204a87;font-weight:bold">package</span> <span style="color:#000">validators</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000;font-weight:bold">(</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span>	<span style="color:#4e9a06">&#34;github.com/ppcamp/go-graphql-with-auth/internal/utils&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span>	<span style="color:#4e9a06">&#34;github.com/sirupsen/logrus&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span style="color:#204a87;font-weight:bold">func</span> <span style="color:#000">ShouldBind</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">dict</span> <span style="color:#204a87;font-weight:bold">map</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87;font-weight:bold">string</span><span style="color:#000;font-weight:bold">]</span><span style="color:#204a87;font-weight:bold">interface</span><span style="color:#000;font-weight:bold">{},</span> <span style="color:#000">obj</span> <span style="color:#204a87;font-weight:bold">interface</span><span style="color:#000;font-weight:bold">{})</span> <span style="color:#204a87;font-weight:bold">error</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span>	<span style="color:#000">err</span> <span style="color:#ce5c00;font-weight:bold">:=</span> <span style="color:#000">utils</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Bind</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">dict</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">obj</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span>	<span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">err</span> <span style="color:#ce5c00;font-weight:bold">!=</span> <span style="color:#204a87;font-weight:bold">nil</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span>		<span style="color:#000">logrus</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">WithError</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">err</span><span style="color:#000;font-weight:bold">).</span><span style="color:#000">Fatal</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;It shouldn&#39;t throw an error&#34;</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span>	<span style="color:#000;font-weight:bold">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span>	<span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">Validator</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Struct</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">obj</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><p>Which is really nice, since after convert, we don&rsquo;t need to worry about
+miswrite some field or need to validate every little field manually or mapping
+it manually. I think you already note the power here right?</p>
+<figure><img src="https://starwarsblog.starwars.com/wp-content/uploads/2018/06/be-more-vader-tall.jpg"/>
+</figure>
+
+<p>Do you remember that we are using the <a href="https://github.com/gin-gonic/gin">gin</a>? The function above it was built
+basing on <strong>gin.Context.ShouldBind</strong>.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-go" data-lang="go"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#204a87;font-weight:bold">package</span> <span style="color:#000">validators</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000;font-weight:bold">(</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span>	<span style="color:#4e9a06">&#34;reflect&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span>	<span style="color:#4e9a06">&#34;strings&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span>	<span style="color:#4e9a06">&#34;github.com/gin-gonic/gin/binding&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span>	<span style="color:#4e9a06">&#34;github.com/go-playground/validator/v10&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span style="color:#204a87;font-weight:bold">var</span> <span style="color:#000">Validator</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">validator</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Validate</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span style="color:#204a87;font-weight:bold">func</span> <span style="color:#000">init</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span>	<span style="color:#000">setupValidator</span><span style="color:#000;font-weight:bold">()</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span style="color:#000;font-weight:bold">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span style="color:#204a87;font-weight:bold">func</span> <span style="color:#000">setupValidator</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span>	<span style="color:#8f5902;font-style:italic">// if Validator == nil {
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span style="color:#8f5902;font-style:italic"></span>	<span style="color:#8f5902;font-style:italic">// 	Validator = validator.New()
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span style="color:#8f5902;font-style:italic"></span>	<span style="color:#8f5902;font-style:italic">// 	Validator.SetTagName(&#34;binding&#34;)
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span style="color:#8f5902;font-style:italic"></span>	<span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">v</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">ok</span> <span style="color:#ce5c00;font-weight:bold">:=</span> <span style="color:#000">binding</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Validator</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Engine</span><span style="color:#000;font-weight:bold">().(</span><span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">validator</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Validate</span><span style="color:#000;font-weight:bold">);</span> <span style="color:#000">ok</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span>		<span style="color:#000">Validator</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#000">v</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span>		<span style="color:#000">Validator</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">RegisterTagNameFunc</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">func</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">fld</span> <span style="color:#000">reflect</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">StructField</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">string</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span>			<span style="color:#000">name</span> <span style="color:#ce5c00;font-weight:bold">:=</span> <span style="color:#000">strings</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">SplitN</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">fld</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Tag</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Get</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;json&#34;</span><span style="color:#000;font-weight:bold">),</span> <span style="color:#4e9a06">&#34;,&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">)[</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">]</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span>			<span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">name</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#4e9a06">&#34;-&#34;</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span>				<span style="color:#204a87;font-weight:bold">return</span> <span style="color:#4e9a06">&#34;&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span>			<span style="color:#000;font-weight:bold">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span>			<span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">name</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span>		<span style="color:#000;font-weight:bold">})</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31</span>		<span style="color:#000">Validator</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">RegisterValidation</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;birthdate&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">birthdateValidation</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32</span>	<span style="color:#000;font-weight:bold">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33</span><span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><p>Furthermore, we can just get the <a href="https://github.com/gin-gonic/gin">gin</a> <a href="https://github.com/go-playground/validator">validator</a> instance and register our
+new validation function and, even more, we can register a new TagNameFunc,
+which, if you need in the future, it can be used to get the json field name
+instead of the struct field name.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-go" data-lang="go"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#204a87;font-weight:bold">package</span> <span style="color:#000">validators</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000;font-weight:bold">(</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span>	<span style="color:#4e9a06">&#34;fmt&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span>	<span style="color:#4e9a06">&#34;github.com/go-playground/validator/v10&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span style="color:#204a87;font-weight:bold">func</span> <span style="color:#000">MapErrorsToMessages</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">err</span> <span style="color:#204a87;font-weight:bold">error</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">errors</span> <span style="color:#000;font-weight:bold">[]</span><span style="color:#204a87;font-weight:bold">string</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span>	<span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">_</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">err</span> <span style="color:#ce5c00;font-weight:bold">:=</span> <span style="color:#204a87;font-weight:bold">range</span> <span style="color:#000">err</span><span style="color:#000;font-weight:bold">.(</span><span style="color:#000">validator</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">ValidationErrors</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span>		<span style="color:#000">errors</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#204a87">append</span><span style="color:#000;font-weight:bold">(</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span>			<span style="color:#000">errors</span><span style="color:#000;font-weight:bold">,</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span>			<span style="color:#000">fmt</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Sprintf</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Field %v failed validation for %v&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">err</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Field</span><span style="color:#000;font-weight:bold">(),</span> <span style="color:#000">err</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Tag</span><span style="color:#000;font-weight:bold">()))</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span>	<span style="color:#000;font-weight:bold">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span>	<span style="color:#204a87;font-weight:bold">return</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><p>Just for example, I&rsquo;ve create a birthdateValidation and register it into
+validator.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-go" data-lang="go"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#204a87;font-weight:bold">package</span> <span style="color:#000">validators</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000;font-weight:bold">(</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span>	<span style="color:#4e9a06">&#34;time&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span>	<span style="color:#4e9a06">&#34;github.com/go-playground/validator/v10&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span>	<span style="color:#4e9a06">&#34;github.com/ppcamp/go-graphql-with-auth/internal/utils&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span style="color:#204a87;font-weight:bold">var</span> <span style="color:#000">birthdateValidation</span> <span style="color:#000">validator</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Func</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">func</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">fl</span> <span style="color:#000">validator</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">FieldLevel</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">bool</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span>	<span style="color:#000">birthdate</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">ok</span> <span style="color:#ce5c00;font-weight:bold">:=</span> <span style="color:#000">fl</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Field</span><span style="color:#000;font-weight:bold">().</span><span style="color:#000">Interface</span><span style="color:#000;font-weight:bold">().(</span><span style="color:#000">time</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Time</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span>	<span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">ok</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span>		<span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">utils</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">IsAValidBirthDate</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">birthdate</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span>	<span style="color:#000;font-weight:bold">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span>	<span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87;font-weight:bold">false</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span style="color:#000;font-weight:bold">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span style="color:#8f5902;font-style:italic">// How to use?
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span style="color:#8f5902;font-style:italic">// type Some struct {
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span style="color:#8f5902;font-style:italic">//  Field time.Time `json:&#34;field,omitempty&#34; binding:&#34;birthdateValidation&#34;`
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span style="color:#8f5902;font-style:italic">// }
+</span></code></pre></div><h2 id="controllers-1">controllers</h2>
+<p>In this package I define a decorator pattern inside a handler. This give me
+more control and flexibility. It&rsquo;s like inserting a middleware between the
+actual handler and the function itself.</p>
+<p>Basically, in the <strong>request_base.go</strong>, <strong>request_transaction.go</strong> and
+<strong>response.go</strong>, I define types and its equivalent interfaces (which will give)
+us the possibility of mocking those objects without needing to create a mocking
+server and registering all endpoints all over again. Awesome right?</p>
+<figure><img src="https://www.cinemaemserie.com.br/wp-content/uploads/2013/11/Barney.jpg"/>
+</figure>
+
+<p>Besides, using this approach we can create and manage the transaction basing
+on the response (commiting or don&rsquo;t). Furthermore, we encapsulate the jwt
+getter to our middleware and we do the validations and parsing.</p>
+<p>To be more clear, I&rsquo;ll post in bellow the whole flux of getting an user query.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-go" data-lang="go"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span style="color:#8f5902;font-style:italic">// endpoints.go
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span style="color:#8f5902;font-style:italic"></span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span style="color:#000">userController</span> <span style="color:#ce5c00;font-weight:bold">:=</span> <span style="color:#000">user</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">NewUserControllerBuilder</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">storage</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span style="color:#8f5902;font-style:italic">// a public query (without token)
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000">schema</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">RegisterQuery</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;users&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">userController</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">QueryUsers</span><span style="color:#000;font-weight:bold">())</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-go" data-lang="go"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#8f5902;font-style:italic">// handlers.go
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span style="color:#8f5902;font-style:italic"></span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span style="color:#8f5902;font-style:italic">// [QUERY] user
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#204a87;font-weight:bold">func</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">t</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">UserControllerBuilder</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000">QueryUsers</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Field</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span>	<span style="color:#204a87;font-weight:bold">return</span> <span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Field</span><span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span>		<span style="color:#000">Type</span><span style="color:#000;font-weight:bold">:</span>        <span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">NewList</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">userType</span><span style="color:#000;font-weight:bold">),</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span>		<span style="color:#000">Description</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;Get all users&#34;</span><span style="color:#000;font-weight:bold">,</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span>		<span style="color:#000">Args</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">FieldConfigArgument</span><span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span>			<span style="color:#4e9a06">&#34;nick&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">ArgumentConfig</span><span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span>				<span style="color:#000">Type</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">String</span><span style="color:#000;font-weight:bold">,</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span>			<span style="color:#000;font-weight:bold">},</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span>			<span style="color:#4e9a06">&#34;email&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">ArgumentConfig</span><span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span>				<span style="color:#000">Type</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">String</span><span style="color:#000;font-weight:bold">,</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span>			<span style="color:#000;font-weight:bold">},</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span>			<span style="color:#4e9a06">&#34;id&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">ArgumentConfig</span><span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span>				<span style="color:#000">Type</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Int</span><span style="color:#000;font-weight:bold">,</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span>			<span style="color:#000;font-weight:bold">},</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span>			<span style="color:#4e9a06">&#34;skip&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">ArgumentConfig</span><span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span>				<span style="color:#000">Type</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Int</span><span style="color:#000;font-weight:bold">,</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span>			<span style="color:#000;font-weight:bold">},</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span>			<span style="color:#4e9a06">&#34;take&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">ArgumentConfig</span><span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span>				<span style="color:#000">Type</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Int</span><span style="color:#000;font-weight:bold">,</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span>			<span style="color:#000;font-weight:bold">},</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span>		<span style="color:#000;font-weight:bold">},</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span>		<span style="color:#000">Resolve</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">func</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">p</span> <span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">ResolveParams</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">interface</span><span style="color:#000;font-weight:bold">{},</span> <span style="color:#204a87;font-weight:bold">error</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span>			<span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">handler</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Request</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">usermodels</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">UserQueryPayload</span><span style="color:#000;font-weight:bold">{},</span> <span style="color:#000">NewQueryUserController</span><span style="color:#000;font-weight:bold">())</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span>		<span style="color:#000;font-weight:bold">},</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span>	<span style="color:#000;font-weight:bold">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31</span><span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><p>Note the call to our defined controller decorator. This will parse the args and
+send them to the actual handler. And, basing on the type of
+NewQueryUserController, will create (or don&rsquo;t), the transaction.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-go" data-lang="go"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#8f5902;font-style:italic">// query.go
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span style="color:#8f5902;font-style:italic"></span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span style="color:#204a87;font-weight:bold">type</span> <span style="color:#000">QueryUserController</span> <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span>	<span style="color:#000">controller</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">TransactionControllerImpl</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span style="color:#000;font-weight:bold">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span style="color:#204a87;font-weight:bold">func</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">c</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">QueryUserController</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000">Execute</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">pl</span> <span style="color:#204a87;font-weight:bold">interface</span><span style="color:#000;font-weight:bold">{})</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">result</span> <span style="color:#000">controller</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">ResponseController</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span>	<span style="color:#000">result</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#000">controller</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">NewResponseController</span><span style="color:#000;font-weight:bold">()</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span>	<span style="color:#000">filter</span> <span style="color:#ce5c00;font-weight:bold">:=</span> <span style="color:#000">pl</span><span style="color:#000;font-weight:bold">.(</span><span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">usermodels</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">UserQueryPayload</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span>	<span style="color:#000">users</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">err</span> <span style="color:#ce5c00;font-weight:bold">:=</span> <span style="color:#000">c</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Transaction</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">FindUsers</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">filter</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span>	<span style="color:#000">result</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">SetError</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">err</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span>	<span style="color:#000">result</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">SetResponse</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">users</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span>	<span style="color:#204a87;font-weight:bold">return</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span style="color:#000;font-weight:bold">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span style="color:#204a87;font-weight:bold">func</span> <span style="color:#000">NewQueryUserController</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000">controller</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">TransactionController</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span>	<span style="color:#204a87;font-weight:bold">return</span> <span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">QueryUserController</span><span style="color:#000;font-weight:bold">{}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><p>Note that by now, the filter it&rsquo;s already parsed and valid and, if we return
+some error in the result, the transacion won&rsquo;t be commited.</p>
+<p>I bet that you liked, &lsquo;cause I did 😎.</p>
+<h2 id="finally-the-graphql-package">finally, the graphql package</h2>
+<p>You should be asking: WHY YOU DID A PACKAGE JUST FOR WRAPPING THE GRAPHQL-GO?.
+It&rsquo;s just keep the more simplier that it can be.</p>
+<p>We starting by defining some internal fields and our schema manager.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-go" data-lang="go"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#204a87;font-weight:bold">package</span> <span style="color:#000">graphql</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000;font-weight:bold">(</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span>	<span style="color:#4e9a06">&#34;log&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span>	<span style="color:#4e9a06">&#34;github.com/gin-gonic/gin&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span>	<span style="color:#4e9a06">&#34;github.com/graphql-go/graphql&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span>	<span style="color:#4e9a06">&#34;github.com/graphql-go/handler&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span>	<span style="color:#4e9a06">&#34;github.com/ppcamp/go-graphql-with-auth/internal/helpers/controller&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span style="color:#204a87;font-weight:bold">type</span> <span style="color:#000">Schema</span> <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span>	<span style="color:#000">queries</span>   <span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Fields</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span>	<span style="color:#000">mutations</span> <span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Fields</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span>	<span style="color:#000">authQueries</span>   <span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Fields</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span>	<span style="color:#000">authMutations</span> <span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Fields</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span style="color:#000;font-weight:bold">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span style="color:#204a87;font-weight:bold">func</span> <span style="color:#000">NewSchemaManager</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">Schema</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span>	<span style="color:#204a87;font-weight:bold">return</span> <span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">Schema</span><span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span>		<span style="color:#000">queries</span><span style="color:#000;font-weight:bold">:</span>       <span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Fields</span><span style="color:#000;font-weight:bold">{},</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span>		<span style="color:#000">mutations</span><span style="color:#000;font-weight:bold">:</span>     <span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Fields</span><span style="color:#000;font-weight:bold">{},</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span>		<span style="color:#000">authQueries</span><span style="color:#000;font-weight:bold">:</span>   <span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Fields</span><span style="color:#000;font-weight:bold">{},</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span>		<span style="color:#000">authMutations</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Fields</span><span style="color:#000;font-weight:bold">{},</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span>	<span style="color:#000;font-weight:bold">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span style="color:#000;font-weight:bold">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span><span style="color:#204a87;font-weight:bold">func</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">s</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">Schema</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000">RegisterQuery</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">fieldName</span> <span style="color:#204a87;font-weight:bold">string</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">fieldValue</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Field</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span>	<span style="color:#000">s</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">queries</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">fieldName</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#000">fieldValue</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31</span><span style="color:#000;font-weight:bold">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33</span><span style="color:#204a87;font-weight:bold">func</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">s</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">Schema</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000">RegisterMutation</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">fieldName</span> <span style="color:#204a87;font-weight:bold">string</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">fieldValue</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Field</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34</span>	<span style="color:#000">s</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">mutations</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">fieldName</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#000">fieldValue</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35</span><span style="color:#000;font-weight:bold">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37</span><span style="color:#204a87;font-weight:bold">func</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">s</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">Schema</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000">RegisterAuthenticatedQuery</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">fieldName</span> <span style="color:#204a87;font-weight:bold">string</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">fieldValue</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Field</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38</span>	<span style="color:#000">s</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">authQueries</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">fieldName</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#000">fieldValue</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39</span><span style="color:#000;font-weight:bold">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41</span><span style="color:#204a87;font-weight:bold">func</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">s</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">Schema</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000">RegisterAuthenticatedMutation</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">fieldName</span> <span style="color:#204a87;font-weight:bold">string</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">fieldValue</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Field</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42</span>	<span style="color:#000">s</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">authMutations</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">fieldName</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#000">fieldValue</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43</span><span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><p>Basically, in the <a href="https://github.com/graphql-go/graphql">graphql-go</a> we don&rsquo;t have a way to increase this queries
+when they already has been added to the object <sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>.</p>
+<p>By creating a simple object that will be the father and, consequently the root
+object and, changing it&rsquo;s resolver to a single one that will only validate
+if the token is valid or don&rsquo;t, we can write something like this:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-go" data-lang="go"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#204a87;font-weight:bold">func</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">s</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">Schema</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000">registerAuthQueries</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span>	<span style="color:#204a87;font-weight:bold">if</span> <span style="color:#204a87">len</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">s</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">authQueries</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#0000cf;font-weight:bold">0</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span>		<span style="color:#204a87;font-weight:bold">var</span> <span style="color:#000">me</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">NewObject</span><span style="color:#000;font-weight:bold">(</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span>			<span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">ObjectConfig</span><span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span>				<span style="color:#000">Name</span><span style="color:#000;font-weight:bold">:</span>        <span style="color:#4e9a06">&#34;MeQuery&#34;</span><span style="color:#000;font-weight:bold">,</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span>				<span style="color:#000">Description</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;Type to encapsulate all authenticated queries&#34;</span><span style="color:#000;font-weight:bold">,</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span>				<span style="color:#000">Fields</span><span style="color:#000;font-weight:bold">:</span>      <span style="color:#000">s</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">authQueries</span><span style="color:#000;font-weight:bold">,</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span>			<span style="color:#000;font-weight:bold">},</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span>		<span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span>		<span style="color:#000">s</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">queries</span><span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">&#34;me&#34;</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Field</span><span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span>			<span style="color:#000">Type</span><span style="color:#000;font-weight:bold">:</span>        <span style="color:#000">me</span><span style="color:#000;font-weight:bold">,</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span>			<span style="color:#000">Description</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;Run some query with jwt auth&#34;</span><span style="color:#000;font-weight:bold">,</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span>			<span style="color:#000">Resolve</span><span style="color:#000;font-weight:bold">:</span>     <span style="color:#000">controller</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">AuthorizedOnly</span><span style="color:#000;font-weight:bold">,</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span>		<span style="color:#000;font-weight:bold">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span>	<span style="color:#000;font-weight:bold">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span style="color:#000;font-weight:bold">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span style="color:#204a87;font-weight:bold">func</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">s</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">Schema</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000">registerAuthMutations</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span>	<span style="color:#204a87;font-weight:bold">if</span> <span style="color:#204a87">len</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">s</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">authMutations</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#0000cf;font-weight:bold">0</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span>		<span style="color:#204a87;font-weight:bold">var</span> <span style="color:#000">me</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">NewObject</span><span style="color:#000;font-weight:bold">(</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span>			<span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">ObjectConfig</span><span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span>				<span style="color:#000">Name</span><span style="color:#000;font-weight:bold">:</span>        <span style="color:#4e9a06">&#34;MeMutation&#34;</span><span style="color:#000;font-weight:bold">,</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span>				<span style="color:#000">Description</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;Type to encapsulate all authenticated queries&#34;</span><span style="color:#000;font-weight:bold">,</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span>				<span style="color:#000">Fields</span><span style="color:#000;font-weight:bold">:</span>      <span style="color:#000">s</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">authMutations</span><span style="color:#000;font-weight:bold">,</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span>			<span style="color:#000;font-weight:bold">},</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span>		<span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span>		<span style="color:#000">s</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">mutations</span><span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">&#34;me&#34;</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Field</span><span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span>			<span style="color:#000">Type</span><span style="color:#000;font-weight:bold">:</span>        <span style="color:#000">me</span><span style="color:#000;font-weight:bold">,</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31</span>			<span style="color:#000">Description</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;Run some mutation with jwt auth&#34;</span><span style="color:#000;font-weight:bold">,</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32</span>			<span style="color:#000">Resolve</span><span style="color:#000;font-weight:bold">:</span>     <span style="color:#000">controller</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">AuthorizedOnly</span><span style="color:#000;font-weight:bold">,</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33</span>		<span style="color:#000;font-weight:bold">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34</span>	<span style="color:#000;font-weight:bold">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35</span><span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><p>Where the <strong>controller.AuthorizedOnly</strong> is defined in our beautifull helper.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-go" data-lang="go"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#204a87;font-weight:bold">package</span> <span style="color:#000">controller</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000;font-weight:bold">(</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span>	<span style="color:#4e9a06">&#34;github.com/graphql-go/graphql&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span>	<span style="color:#4e9a06">&#34;github.com/ppcamp/go-graphql-with-auth/internal/services/jwt&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span style="color:#204a87;font-weight:bold">func</span> <span style="color:#000">AuthorizedOnly</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">p</span> <span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">ResolveParams</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">interface</span><span style="color:#000;font-weight:bold">{},</span> <span style="color:#204a87;font-weight:bold">error</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span>	<span style="color:#000">_</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">err</span> <span style="color:#ce5c00;font-weight:bold">:=</span> <span style="color:#000">jwt</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">GetSession</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Context</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span>	<span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">err</span> <span style="color:#ce5c00;font-weight:bold">!=</span> <span style="color:#204a87;font-weight:bold">nil</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span>		<span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87;font-weight:bold">nil</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">err</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span>	<span style="color:#000;font-weight:bold">}</span> <span style="color:#204a87;font-weight:bold">else</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span>		<span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Field</span><span style="color:#000;font-weight:bold">{},</span> <span style="color:#000">err</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span>	<span style="color:#000;font-weight:bold">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><p><strong>FINALLY</strong> we need to register our handlers and pass our <a href="https://github.com/gin-gonic/gin">gin</a> Context into the
+<a href="https://github.com/graphql-go/graphql">graphql-go</a> (graphql.ResolveParams)</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-go" data-lang="go"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#204a87;font-weight:bold">func</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">s</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">Schema</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000">getSchemas</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Schema</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span>	<span style="color:#000">s</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">registerAuthQueries</span><span style="color:#000;font-weight:bold">()</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span>	<span style="color:#000">s</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">registerAuthMutations</span><span style="color:#000;font-weight:bold">()</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span>	<span style="color:#8f5902;font-style:italic">// Schema
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span style="color:#8f5902;font-style:italic"></span>	<span style="color:#000">schema</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">err</span> <span style="color:#ce5c00;font-weight:bold">:=</span> <span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">NewSchema</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">SchemaConfig</span><span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span>		<span style="color:#000">Query</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">NewObject</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">ObjectConfig</span><span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span>			<span style="color:#000">Name</span><span style="color:#000;font-weight:bold">:</span>        <span style="color:#4e9a06">&#34;Query&#34;</span><span style="color:#000;font-weight:bold">,</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span>			<span style="color:#000">Description</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;All elements that can be fetched&#34;</span><span style="color:#000;font-weight:bold">,</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span>			<span style="color:#000">Fields</span><span style="color:#000;font-weight:bold">:</span>      <span style="color:#000">s</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">queries</span><span style="color:#000;font-weight:bold">,</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span>		<span style="color:#000;font-weight:bold">}),</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span>		<span style="color:#000">Mutation</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">NewObject</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">graphql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">ObjectConfig</span><span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span>			<span style="color:#000">Name</span><span style="color:#000;font-weight:bold">:</span>        <span style="color:#4e9a06">&#34;Mutation&#34;</span><span style="color:#000;font-weight:bold">,</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span>			<span style="color:#000">Description</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;All functions that make some change in API&#34;</span><span style="color:#000;font-weight:bold">,</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span>			<span style="color:#000">Fields</span><span style="color:#000;font-weight:bold">:</span>      <span style="color:#000">s</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">mutations</span><span style="color:#000;font-weight:bold">,</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span>		<span style="color:#000;font-weight:bold">}),</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span>	<span style="color:#000;font-weight:bold">})</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span>	<span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">err</span> <span style="color:#ce5c00;font-weight:bold">!=</span> <span style="color:#204a87;font-weight:bold">nil</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span>		<span style="color:#000">log</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Fatalf</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;failed to create new schema, error: %v&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">err</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span>	<span style="color:#000;font-weight:bold">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span>	<span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">schema</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span style="color:#000;font-weight:bold">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span style="color:#8f5902;font-style:italic">// Handler is a closure that will wrap the schema and return a proper gin
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span style="color:#8f5902;font-style:italic">// handler
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#204a87;font-weight:bold">func</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">s</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">Schema</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000">Handler</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000">gin</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">HandlerFunc</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span>	<span style="color:#000">schema</span> <span style="color:#ce5c00;font-weight:bold">:=</span> <span style="color:#000">s</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">getSchemas</span><span style="color:#000;font-weight:bold">()</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31</span>	<span style="color:#000">h</span> <span style="color:#ce5c00;font-weight:bold">:=</span> <span style="color:#000">handler</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">New</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">handler</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Config</span><span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32</span>		<span style="color:#000">Schema</span><span style="color:#000;font-weight:bold">:</span>   <span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">schema</span><span style="color:#000;font-weight:bold">,</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33</span>		<span style="color:#000">Pretty</span><span style="color:#000;font-weight:bold">:</span>   <span style="color:#204a87;font-weight:bold">true</span><span style="color:#000;font-weight:bold">,</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34</span>		<span style="color:#000">GraphiQL</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">true</span><span style="color:#000;font-weight:bold">,</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35</span>		<span style="color:#8f5902;font-style:italic">// Playground: true,
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36</span><span style="color:#8f5902;font-style:italic"></span>	<span style="color:#000;font-weight:bold">})</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38</span>	<span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87;font-weight:bold">func</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">c</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">gin</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Context</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39</span>		<span style="color:#000">h</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">ContextHandler</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">c</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">c</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Writer</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">c</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Request</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40</span>	<span style="color:#000;font-weight:bold">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41</span><span style="color:#000;font-weight:bold">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42</span>
+</code></pre></div><h1 id="conclusions">Conclusions</h1>
+<p>In the end, you need to put in the balance if is it really necessary to
+implement the graphql approach. In my cause, there&rsquo;s only one case that I should
+have used instead of RESTfull API until now.</p>
+<p>I didn&rsquo;t finished the project yet and I don&rsquo;t know if I&rsquo;ll,
+but let me told you what needs to be done:</p>
+<ul>
+<li>Add the <a href="https://github.com/golang-migrate/migrate">migration</a> into the startup routine</li>
+<li>refactor the controllers module</li>
+<li>create new type/resolve/repository for books (a user has books)</li>
+<li>create unitary tests.</li>
+</ul>
+<p>If I made some mistake, or if you have some suggestion, ping me in the
+discussion below or send me a message.</p>
+<p>The full project can be found <a href="https://github.com/ppcamp/go-graphql-with-auth">here</a>.</p>
+<p>Best regards,</p>
+<p>@ppcamp</p>
+<h3 id="another-links">Another links</h3>
+<ul>
+<li><a href="https://www.apollographql.com/docs/studio/explorer/">https://www.apollographql.com/docs/studio/explorer/</a></li>
+</ul>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>Handlers are the name for all methods/packages that controls the request/
+response&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p>I&rsquo;m calling <strong>class</strong>, however, it&rsquo;s just a struct with some methods
+assigned to it&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3" role="doc-endnote">
+<p>Actually, those variables are packaged scoped.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4" role="doc-endnote">
+<p>At least, i didn&rsquo;t found.&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+<ul class="pa0">
+  
+   <li class="list">
+     <a href="/tags/graphql" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">graphql</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/go" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">go</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/graphql-go" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">graphql-go</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/controllers" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">controllers</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/project-structure" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">project structure</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "ppcamp" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://ppcamp.github.io" >
+    &copy;  ppcamp 2021 
+  </a>
+    <div>
+
+
+
+
+
+
+
+<a href="https://www.linkedin.com/in/ppcamp/" target="_blank" class="link-transition linkedin link dib z-999 pt3 pt0-l mr1" title="LinkedIn link" rel="noopener" aria-label="follow on LinkedIn——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+<a href="https://github.com/ppcamp" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -20,5 +20,15 @@ Good points:
  It can be interesting when the amount of data of each request is relevant (mobile/lightweight apps) It can be interesting doing to the reuse of existent resolvers for our types (you&amp;rsquo;ll see an example in this project) It&amp;rsquo;s easier to the backend developer to handle with the errors (without worring about status codes, padronized response bodies and go on) It&amp;rsquo;s interesting to have a panel where you can see all available types/queries/mutations and its descriptions  Bad points:</description>
     </item>
     
+    <item>
+      <title>Next posts</title>
+      <link>https://ppcamp.github.io/post/next-posts/</link>
+      <pubDate>Mon, 01 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://ppcamp.github.io/post/next-posts/</guid>
+      <description>What I plan to do next Bellow you can see what I want to do, following this order
+ COVID&amp;rsquo;s report of Itabira city: A script that access a spreadsheet and then generates a report with contained informations. Itabira&amp;rsquo;s health secretariat ombudsman report: A script that access the spreadsheet and generates a report with plots. AFDN animator: How to build a simple afdn animator in rust Sigaa scrapper: A script that access the Sigaa&amp;rsquo;s system, and then, generates plots and infereces about it API&amp;rsquo;s builded in Golang (focused on speed) vs API&amp;rsquo;s focused in deployment time: A simple use case and personal thoughts about when using each one of them.</description>
+    </item>
+    
   </channel>
 </rss>

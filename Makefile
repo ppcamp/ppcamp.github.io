@@ -6,7 +6,7 @@ FILENAME := "hugo.deb"
 URL := "https://github.com/gohugoio/hugo/releases/download/v0.89.4/hugo_extended_0.89.4_Linux-64bit.deb"
 DOWNLOAD_FILE := curl -L --max-redirs 5 --silent --output ${FILENAME} ${URL}
 
-## build: build the project to the upper public folder
+## build: build the project to the upper docs folder
 build:
 	@echo ""
 	@echo " Building the project..."
@@ -14,10 +14,10 @@ build:
 	@echo "Steps:"
 	@echo ""
 	@echo "1. Cleaning directory"
-	rm -rfd ./public/*
+	rm -rfd ./docs/*
 	@echo ""
 	@echo "2. Building hugo"
-	cd src && hugo --destination=../public
+	cd src && hugo --destination=../docs
 	@echo ""
 	@echo "Finished!"
 

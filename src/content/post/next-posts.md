@@ -21,3 +21,20 @@ Bellow you can see what I want to do, following this order
 1. Code challenge I: The junior expectations.
 2. Code challenge II: An beautiful golang history
 3. Code challenge III: A simple snake game
+
+# What I want to search
+
+1. [kafka]
+2. [protobuff]
+3. [hadoop]
+4. [apache-flink]
+5. [spark] and [link](https://severalnines.com/database-blog/big-data-postgresql-and-apache-spark)
+
+
+<!-- LINKs -->
+
+[kafka]: https://aws.amazon.com/pt/msk/what-is-kafka/
+[protobuff]: https://developers.google.com/protocol-buffers
+[hadoop]: https://hadoop.apache.org/
+[apache-flink]: https://flink.apache.org/flink-architecture.html
+[spark]: https://spark.apache.org/

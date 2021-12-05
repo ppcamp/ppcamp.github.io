@@ -10,12 +10,11 @@ title: "Next posts"
 
 Bellow you can see what I want to do, following this order
 
-1. COVID's report of Itabira city: A script that access a spreadsheet and then generates a report with contained informations.
-2. Itabira's health secretariat ombudsman report: A script that access the spreadsheet and generates a report with plots.
-3. AFDN animator: How to build a simple afdn animator in rust
-4. Sigaa scrapper: A script that access the Sigaa's system, and then, generates plots and infereces about it
-5. API's builded in Golang (focused on speed) vs API's focused in deployment time: A simple use case and personal thoughts about when using each one of them. (Golang vs NestJS with API benchmarks)
-6. Remember it: A glimpse of open source projects
+1. Itabira's health secretariat ombudsman report: A script that access the spreadsheet and generates a report with plots.
+2. AFDN animator: How to build a simple afdn animator in rust
+3. Sigaa scrapper: A script that access the Sigaa's system, and then, generates plots and infereces about it
+4. API's builded in Golang (focused on speed) vs API's focused in deployment time: A simple use case and personal thoughts about when using each one of them. (Golang vs NestJS with API benchmarks)
+5. Remember it: A glimpse of open source projects
 
 ## Code challanges
 1. Code challenge I: The junior expectations.

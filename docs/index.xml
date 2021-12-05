@@ -6,7 +6,7 @@
     <description>Recent content in ___ on ppcamp</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 05 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://ppcamp.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 05 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://ppcamp.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Skills</title>
       <link>https://ppcamp.github.io/skills/</link>
@@ -20,6 +20,16 @@
   Postgresql
   MongoDB
   Others programming languages  Html CSS Bash script JS Jquery Matlab/Octave  Operational Systems  Debian based systems (Kubuntu, Ubuntu, Deepin) Windows 8.</description>
+    </item>
+    
+    <item>
+      <title>COVID’s report of Itabira city</title>
+      <link>https://ppcamp.github.io/post/covid19-itabira/</link>
+      <pubDate>Sun, 05 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://ppcamp.github.io/post/covid19-itabira/</guid>
+      <description>In this page I&amp;rsquo;ll try to explain to you how to built a simple script that generates a refreshed report basing on some spreadsheet. In this case, this file was used by Itabira&amp;rsquo;s health secretary. The project can be found here.
+Context Since the first cases of the covid&amp;rsquo;s in Itabira, the Health Secretary ordered to generate a report to show to the citiziens what was happenning and the current situation of the city daily.</description>
     </item>
     
     <item>
@@ -42,7 +52,7 @@ Good points:
       
       <guid>https://ppcamp.github.io/post/next-posts/</guid>
       <description>What I plan to do next Bellow you can see what I want to do, following this order
- COVID&amp;rsquo;s report of Itabira city: A script that access a spreadsheet and then generates a report with contained informations. Itabira&amp;rsquo;s health secretariat ombudsman report: A script that access the spreadsheet and generates a report with plots. AFDN animator: How to build a simple afdn animator in rust Sigaa scrapper: A script that access the Sigaa&amp;rsquo;s system, and then, generates plots and infereces about it API&amp;rsquo;s builded in Golang (focused on speed) vs API&amp;rsquo;s focused in deployment time: A simple use case and personal thoughts about when using each one of them.</description>
+ Itabira&amp;rsquo;s health secretariat ombudsman report: A script that access the spreadsheet and generates a report with plots. AFDN animator: How to build a simple afdn animator in rust Sigaa scrapper: A script that access the Sigaa&amp;rsquo;s system, and then, generates plots and infereces about it API&amp;rsquo;s builded in Golang (focused on speed) vs API&amp;rsquo;s focused in deployment time: A simple use case and personal thoughts about when using each one of them.</description>
     </item>
     
     <item>

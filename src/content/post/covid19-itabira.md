@@ -1,6 +1,6 @@
 ---
 date: 2021-12-05T00:00:00-00:00
-#lastmod: 2021-11-10T20:42:44-03:00
+lastmod: 2021-12-20T20:42:44-03:00
 show_reading_time: true
 tags: ["covid", "python", "report", "pdf", "scraping"]
 featured_image: "/images/boletim-itabira-1.png"
@@ -23,7 +23,9 @@ current situation of the city daily.
 {{< figure src="https://www.apsf.org/wp-content/uploads/newsletters/2020/3502/coronavirus-covid-19.png">}}
 
 However, edit a report daily was an annoying task and tooked too much time and
-effort. To "simplify" the process, I've created this script, which generates
+effort.
+
+To "simplify" the process, I've created this script, which generates
 the daily report that was distribuited to the internal comittee and to the
 local journals.
 
@@ -37,11 +39,17 @@ First of all, you'll need to get the authorization to the script access the
 spreadsheet. You'll need to read about [oauth2]. Also, you'll need to give
 the permissions to your [credentials][4].
 
-Why you need to have [credentials]? If you don't create an api  access/project,
-you'll need to authorize your script access by your web browser every single
-run, which isn't scalable.
+Why you need to have [credentials][4]? If you don't create an api  access/project,
+you'll need to authorize your script access your spreadsheet by your web browser
+every single run, which isn't scalable.
+
+So, in the next lines, I'll describe which every part does. From data
+acquisition to the generated pdf files.
 
 # Getting current date
+
+In this step, I just got the current date formatted, which I'll be using in the
+pdf's header.
 
 ```python
 # pytz.all_timezones to see all timezones
@@ -106,13 +114,21 @@ log.debug('Default timezone: {}'.format(BRASIL_TZ))
 
 # Load credentials and login
 
+{{< figure src="https://scontent.fipn5-1.fna.fbcdn.net/v/t1.6435-9/72614145_2323986887714194_8496527252404568064_n.png?_nc_cat=104&ccb=1-5&_nc_sid=730e14&_nc_ohc=_2npUuQ5NeEAX_cH7vC&_nc_ht=scontent.fipn5-1.fna&oh=00_AT8WUWtvOXfM9fUz1wo1z1UFNCkHqdQKF060QPt_SUkgXw&oe=61E5D275">}}
+
+
+In this step, we need to get the spreadsheet data.
+
 ```python
 from oauth2client.service_account import ServiceAccountCredentials as Credentials
 import gspread # Sheets
 
 # Login Constants
 SCOPE = ['https://www.googleapis.com/auth/spreadsheets.readonly']
-URL = 'https://docs.google.com/spreadsheets/d/1pkzSpLBtlzv4J_H8W9o20dWHB7MnkoStXL5h73NHkAs/edit?usp=sharing'
+URL = '' # The spreadsheet url.
+# Note that you can use the environment variables instead
+# import os
+# os.environ.get("ENVIRON_SPREADSHEET_URL")
 
 # Create an Client
 GAUTH = Credentials.from_json_keyfile_name('credentials/nisis_credentials.json',SCOPE)
@@ -124,6 +140,13 @@ log.info('Client acquired with success!')
 
 
 # Sheet load and data treatment
+
+Since we have load the data, and this data is filled by a Google's Form, and
+there's no pattern, some "errors" may occur.
+
+So, to minimize those errors, we need to make some treatments, like stripping
+the words, converting them to lower, removing empty rows, fixing wrong data
+convertions (`string` to `int`)
 
 ```python
 import pandas as pd
@@ -267,6 +290,8 @@ log.info('Tab "{}" oppened with success!'.format(sheetName))
 
 # Image and Copy imports
 
+By now, we need to load the images that we're gonna use in the pdf.
+
 ```python
 # To import image in reportlab. Images are Pillow formats or BytesIO
 from reportlab.lib.utils import ImageReader
@@ -275,7 +300,8 @@ from PIL import Image # Open png images
 from copy import deepcopy as dp # dataframe creation and manipulation permanent
 ```
 
-# Load Images
+We need to convert the image to white, otherwise it'll use the black color
+instead.
 
 ```python
 def alpha2white(img):
@@ -297,6 +323,11 @@ log.info('Images loaded successfully')
 
 
 # Data analysis
+
+Like I've said previously, this data hasn't a pattern, therefore, we need to
+compare if the user misstyped, to avoid those errors, we use the string distance
+between two words. To do that, we use [this](https://stackabuse.com/levenshtein-distance-and-text-similarity-in-python/), which is in fact a
+[Natural Language Technique](https://en.wikipedia.org/wiki/Natural_language)
 
 ```python
 def similar(word1, word2, accept=False, caseSensitive=False, method='BuiltIn'):
@@ -380,6 +411,9 @@ def applyFilter(df, l, word, col):
             return similar(x,word,0.7)
     return int(len(list( filter(getValue, df.loc[l, col]) )))
 ```
+
+
+To manipulate even more the data, we use a [numpy](https://numpy.org/doc/stable/reference/generated/numpy.array.html) array, which allow us to make bitwise operations in the vector.
 
 ```python
 # To be clear in variable manipulation, every var in this section will have
@@ -572,6 +606,11 @@ database.close()
 
 # Plots
 
+After get all data that will be printed in the pdf, we need to generate the plots
+to make that, we use the [Seaborn library](https://seaborn.pydata.org/#:~:text=Seaborn%20is%20a%20Python%20data,attractive%20and%20informative%20statistical%20graphics.&text=General%20support%20questions%20are%20most,have%20dedicated%20channels%20for%20seaborn),
+which in fact, just makes the plot "pretty" without needing to setup every
+single config.
+
 ```python
 import matplotlib.pyplot as plt
 import seaborn as sns # Change color plot
@@ -759,6 +798,11 @@ page = '' # just to initialize the variable
 
 ## PDF generic functions
 
+The [reportlab] library, is a great tool, however, in its free version, we don't
+have a great support for hyperlinks in the text (usually it don't works). To fix
+that, we make a quickfix, using the native hyperlink method and setting up the
+hyperlink block.
+
 ```python
 def pdfDrawLink(url, x, y, width, height, color=False):
     '''
@@ -798,6 +842,8 @@ def pdfDrawLink(url, x, y, width, height, color=False):
 
 ### Start
 
+The first pdf setup, and its meta informations.
+
 ```python
 def pdf_Start(fileName):
     global pgDim, xPos, yPos, page
@@ -821,6 +867,8 @@ def pdf_Start(fileName):
 ```
 
 ### Title
+
+Draws the bigger text
 
 ```python
 def setTitle(t):
@@ -1417,6 +1465,8 @@ getExternal(fileName)
 
 [covid]: https://www.google.com/search?q=covid&sxsrf=AOaemvJw0qWYU1KermVSBcEOVxlP149S2A%3A1638738696509&source=hp&ei=CCutYYXTHIGc5OUP3qSMmAg&iflsig=ALs-wAMAAAAAYa05GBqL0jw9bS11YqS3TUqLMjAAXk4m&ved=0ahUKEwiF94evyc30AhUBDrkGHV4SA4MQ4dUDCAc&uact=5&oq=covid&gs_lcp=Cgdnd3Mtd2l6EAMyBAgjECcyBAgAEEMyBAgAEEMyBAgAEEMyBAgAEEMyBwgAEMkDEEMyBQgAEJIDMgUIABCSAzIECAAQQzIFCAAQywFQAFjAA2DTBmgAcAB4AIABdogBuwSSAQMwLjWYAQCgAQE&sclient=gws-wiz
 [oauth2]: https://docs.gspread.org/en/latest/oauth2.html
+[reportlab]: https://www.reportlab.com/docs/reportlab-reference.pdf
+[userguide]: https://www.reportlab.com/docs/reportlab-userguide.pdf
 [1]: https://github.com/ppcamp/report-covid-19-itabira
 [2]: https://github.com/ppcamp/report-covid-19-itabira/raw/master/examples/Boletim-Externo_31-Julho-2020.pdf
 [3]: https://github.com/ppcamp/report-covid-19-itabira/raw/master/examples/Boletim-Interno_31-Julho-2020.pdf

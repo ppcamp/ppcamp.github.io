@@ -36,12 +36,12 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://ppcamp.github.io/post/covid19-itabira/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-12-05T00:00:00+00:00" />
-<meta property="article:modified_time" content="2021-12-05T00:00:00+00:00" /><meta property="og:site_name" content="ppcamp" />
+<meta property="article:modified_time" content="2021-12-20T20:42:44-03:00" /><meta property="og:site_name" content="ppcamp" />
 
 <meta itemprop="name" content="COVID’s report of Itabira city">
 <meta itemprop="description" content="A script that access a spreadsheet and then generates a report with contained informations"><meta itemprop="datePublished" content="2021-12-05T00:00:00+00:00" />
-<meta itemprop="dateModified" content="2021-12-05T00:00:00+00:00" />
-<meta itemprop="wordCount" content="5214">
+<meta itemprop="dateModified" content="2021-12-20T20:42:44-03:00" />
+<meta itemprop="wordCount" content="5524">
 <meta itemprop="keywords" content="covid,python,report,pdf,scraping," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="COVID’s report of Itabira city"/>
 <meta name="twitter:description" content="A script that access a spreadsheet and then generates a report with contained informations"/>
@@ -166,6 +166,7 @@
       
       <time class="f6 mv4 dib tracked" datetime="2021-12-05T00:00:00Z">
         <b>Created at: </b>December 5, 2021
+          <b> | Updated at: </b>December 20, 2021
 
       </time>
       
@@ -173,8 +174,8 @@
 
       
       
-        <span class="f6 mv4 dib tracked"> <b>|</b> 25 minutes read </span>
-        <span class="f6 mv4 dib tracked"> <b>|</b> 5214 words </span>
+        <span class="f6 mv4 dib tracked"> <b>|</b> 26 minutes read </span>
+        <span class="f6 mv4 dib tracked"> <b>|</b> 5524 words </span>
       
     </header>
     <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>In this page I&rsquo;ll try to explain to you how to built a simple script that
@@ -189,7 +190,8 @@ current situation of the city daily.</p>
 </figure>
 
 <p>However, edit a report daily was an annoying task and tooked too much time and
-effort. To &ldquo;simplify&rdquo; the process, I&rsquo;ve created this script, which generates
+effort.</p>
+<p>To &ldquo;simplify&rdquo; the process, I&rsquo;ve created this script, which generates
 the daily report that was distribuited to the internal comittee and to the
 local journals.</p>
 <p><strong>You can download the full example of a PDF (with mocked data) right</strong>
@@ -198,10 +200,14 @@ local journals.</p>
 <p>First of all, you&rsquo;ll need to get the authorization to the script access the
 spreadsheet. You&rsquo;ll need to read about <a href="https://docs.gspread.org/en/latest/oauth2.html">oauth2</a>. Also, you&rsquo;ll need to give
 the permissions to your <a href="https://console.cloud.google.com/cloud-resource-manager?pli=1">credentials</a>.</p>
-<p>Why you need to have [credentials]? If you don&rsquo;t create an api  access/project,
-you&rsquo;ll need to authorize your script access by your web browser every single
-run, which isn&rsquo;t scalable.</p>
+<p>Why you need to have <a href="https://console.cloud.google.com/cloud-resource-manager?pli=1">credentials</a>? If you don&rsquo;t create an api  access/project,
+you&rsquo;ll need to authorize your script access your spreadsheet by your web browser
+every single run, which isn&rsquo;t scalable.</p>
+<p>So, in the next lines, I&rsquo;ll describe which every part does. From data
+acquisition to the generated pdf files.</p>
 <h1 id="getting-current-date">Getting current date</h1>
+<p>In this step, I just got the current date formatted, which I&rsquo;ll be using in the
+pdf&rsquo;s header.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-python" data-lang="python"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#8f5902;font-style:italic"># pytz.all_timezones to see all timezones</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">pytz</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">timezone</span> <span style="color:#8f5902;font-style:italic"># Defaul timezone it&#39;s ahead of Brasil(+)</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">datetime</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">datetime</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">date</span>
@@ -257,20 +263,32 @@ run, which isn&rsquo;t scalable.</p>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span style="color:#000">log</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">info</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;Logging created w/ success!&#39;</span><span style="color:#000;font-weight:bold">)</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span style="color:#000">log</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">debug</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;Default timezone: </span><span style="color:#4e9a06">{}</span><span style="color:#4e9a06">&#39;</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">format</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">BRASIL_TZ</span><span style="color:#000;font-weight:bold">))</span>
 </code></pre></div><h1 id="load-credentials-and-login">Load credentials and login</h1>
+<figure><img src="https://scontent.fipn5-1.fna.fbcdn.net/v/t1.6435-9/72614145_2323986887714194_8496527252404568064_n.png?_nc_cat=104&amp;ccb=1-5&amp;_nc_sid=730e14&amp;_nc_ohc=_2npUuQ5NeEAX_cH7vC&amp;_nc_ht=scontent.fipn5-1.fna&amp;oh=00_AT8WUWtvOXfM9fUz1wo1z1UFNCkHqdQKF060QPt_SUkgXw&amp;oe=61E5D275"/>
+</figure>
+
+<p>In this step, we need to get the spreadsheet data.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-python" data-lang="python"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">oauth2client.service_account</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">ServiceAccountCredentials</span> <span style="color:#204a87;font-weight:bold">as</span> <span style="color:#000">Credentials</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">gspread</span> <span style="color:#8f5902;font-style:italic"># Sheets</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span style="color:#8f5902;font-style:italic"># Login Constants</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span style="color:#000">SCOPE</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">&#39;https://www.googleapis.com/auth/spreadsheets.readonly&#39;</span><span style="color:#000;font-weight:bold">]</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span style="color:#000">URL</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#39;https://docs.google.com/spreadsheets/d/1pkzSpLBtlzv4J_H8W9o20dWHB7MnkoStXL5h73NHkAs/edit?usp=sharing&#39;</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span style="color:#8f5902;font-style:italic"># Create an Client</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span style="color:#000">GAUTH</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Credentials</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">from_json_keyfile_name</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;credentials/nisis_credentials.json&#39;</span><span style="color:#000;font-weight:bold">,</span><span style="color:#000">SCOPE</span><span style="color:#000;font-weight:bold">)</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span style="color:#8f5902;font-style:italic"># Auth the client</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span style="color:#000">GCLIENT</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">gspread</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">authorize</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">GAUTH</span><span style="color:#000;font-weight:bold">)</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span style="color:#000">log</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">info</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;Client acquired with success!&#39;</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span style="color:#000">URL</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#39;&#39;</span> <span style="color:#8f5902;font-style:italic"># The spreadsheet url.</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span style="color:#8f5902;font-style:italic"># Note that you can use the environment variables instead</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span style="color:#8f5902;font-style:italic"># import os</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span style="color:#8f5902;font-style:italic"># os.environ.get(&#34;ENVIRON_SPREADSHEET_URL&#34;)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span style="color:#8f5902;font-style:italic"># Create an Client</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span style="color:#000">GAUTH</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Credentials</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">from_json_keyfile_name</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;credentials/nisis_credentials.json&#39;</span><span style="color:#000;font-weight:bold">,</span><span style="color:#000">SCOPE</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span style="color:#8f5902;font-style:italic"># Auth the client</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span style="color:#000">GCLIENT</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">gspread</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">authorize</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">GAUTH</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span style="color:#000">log</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">info</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;Client acquired with success!&#39;</span><span style="color:#000;font-weight:bold">)</span>
 </code></pre></div><h1 id="sheet-load-and-data-treatment">Sheet load and data treatment</h1>
+<p>Since we have load the data, and this data is filled by a Google&rsquo;s Form, and
+there&rsquo;s no pattern, some &ldquo;errors&rdquo; may occur.</p>
+<p>So, to minimize those errors, we need to make some treatments, like stripping
+the words, converting them to lower, removing empty rows, fixing wrong data
+convertions (<code>string</code> to <code>int</code>)</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-python" data-lang="python"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  1</span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">pandas</span> <span style="color:#204a87;font-weight:bold">as</span> <span style="color:#000">pd</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  2</span><span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">numpy</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">nan</span> <span style="color:#204a87;font-weight:bold">as</span> <span style="color:#000">NaN</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  3</span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">numpy</span> <span style="color:#204a87;font-weight:bold">as</span> <span style="color:#000">np</span>
@@ -405,12 +423,14 @@ run, which isn&rsquo;t scalable.</p>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span style="color:#000">log</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">info</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;Tab &#34;</span><span style="color:#4e9a06">{}</span><span style="color:#4e9a06">&#34; oppened with success!&#39;</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">format</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">sheetName</span><span style="color:#000;font-weight:bold">))</span>
 </code></pre></div><h1 id="image-and-copy-imports">Image and Copy imports</h1>
+<p>By now, we need to load the images that we&rsquo;re gonna use in the pdf.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-python" data-lang="python"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span style="color:#8f5902;font-style:italic"># To import image in reportlab. Images are Pillow formats or BytesIO</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">reportlab.lib.utils</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">ImageReader</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">PIL</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">Image</span> <span style="color:#8f5902;font-style:italic"># Open png images</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">copy</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">deepcopy</span> <span style="color:#204a87;font-weight:bold">as</span> <span style="color:#000">dp</span> <span style="color:#8f5902;font-style:italic"># dataframe creation and manipulation permanent</span>
-</code></pre></div><h1 id="load-images">Load Images</h1>
+</code></pre></div><p>We need to convert the image to white, otherwise it&rsquo;ll use the black color
+instead.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-python" data-lang="python"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">alpha2white</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">img</span><span style="color:#000;font-weight:bold">):</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span>    <span style="color:#8f5902;font-style:italic"># Create a white rgb background</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span>    <span style="color:#000">_img</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Image</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">new</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;RGBA&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">img</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">size</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;WHITE&#34;</span><span style="color:#000;font-weight:bold">)</span>
@@ -427,6 +447,10 @@ run, which isn&rsquo;t scalable.</p>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span style="color:#000">log</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">info</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;Images loaded successfully&#39;</span><span style="color:#000;font-weight:bold">)</span>
 </code></pre></div><h1 id="data-analysis">Data analysis</h1>
+<p>Like I&rsquo;ve said previously, this data hasn&rsquo;t a pattern, therefore, we need to
+compare if the user misstyped, to avoid those errors, we use the string distance
+between two words. To do that, we use <a href="https://stackabuse.com/levenshtein-distance-and-text-similarity-in-python/">this</a>, which is in fact a
+<a href="https://en.wikipedia.org/wiki/Natural_language">Natural Language Technique</a></p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-python" data-lang="python"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">similar</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">word1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">word2</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">accept</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#204a87;font-weight:bold">False</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">caseSensitive</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#204a87;font-weight:bold">False</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">method</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#39;BuiltIn&#39;</span><span style="color:#000;font-weight:bold">):</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span>    <span style="color:#4e9a06">&#39;&#39;&#39;
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span style="color:#4e9a06">    This method check similarity between strings. It can be used with
@@ -507,7 +531,8 @@ run, which isn&rsquo;t scalable.</p>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">78</span>        <span style="color:#204a87;font-weight:bold">else</span><span style="color:#000;font-weight:bold">:</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">79</span>            <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">similar</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">,</span><span style="color:#000">word</span><span style="color:#000;font-weight:bold">,</span><span style="color:#0000cf;font-weight:bold">0.7</span><span style="color:#000;font-weight:bold">)</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">80</span>    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87">len</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87">list</span><span style="color:#000;font-weight:bold">(</span> <span style="color:#204a87">filter</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">getValue</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">df</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">loc</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">l</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">col</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#000;font-weight:bold">)))</span>
-</code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-python" data-lang="python"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  1</span><span style="color:#8f5902;font-style:italic"># To be clear in variable manipulation, every var in this section will have</span>
+</code></pre></div><p>To manipulate even more the data, we use a <a href="https://numpy.org/doc/stable/reference/generated/numpy.array.html">numpy</a> array, which allow us to make bitwise operations in the vector.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-python" data-lang="python"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  1</span><span style="color:#8f5902;font-style:italic"># To be clear in variable manipulation, every var in this section will have</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  2</span><span style="color:#8f5902;font-style:italic"># an d2a_ prefix (data to analysis). If it&#39;s a const will be UPPER_CASE</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  3</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  4</span><span style="color:#000">AGES</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[</span>
@@ -693,6 +718,10 @@ run, which isn&rsquo;t scalable.</p>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">184</span><span style="color:#8f5902;font-style:italic"># Close DB connection</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">185</span><span style="color:#000">database</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">close</span><span style="color:#000;font-weight:bold">()</span>
 </code></pre></div><h1 id="plots">Plots</h1>
+<p>After get all data that will be printed in the pdf, we need to generate the plots
+to make that, we use the <a href="https://seaborn.pydata.org/#:~:text=Seaborn%20is%20a%20Python%20data,attractive%20and%20informative%20statistical%20graphics.&amp;text=General%20support%20questions%20are%20most,have%20dedicated%20channels%20for%20seaborn">Seaborn library</a>,
+which in fact, just makes the plot &ldquo;pretty&rdquo; without needing to setup every
+single config.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-python" data-lang="python"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  1</span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">matplotlib.pyplot</span> <span style="color:#204a87;font-weight:bold">as</span> <span style="color:#000">plt</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  2</span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">seaborn</span> <span style="color:#204a87;font-weight:bold">as</span> <span style="color:#000">sns</span> <span style="color:#8f5902;font-style:italic"># Change color plot</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  3</span><span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">io</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">BytesIO</span> <span style="color:#8f5902;font-style:italic"># Image buff</span>
@@ -859,6 +888,10 @@ run, which isn&rsquo;t scalable.</p>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span style="color:#8f5902;font-style:italic"># of python, to search variables defined before to minimize the number of</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span style="color:#8f5902;font-style:italic"># parameters that I would to put in Class, or either in a function.</span>
 </code></pre></div><h2 id="pdf-generic-functions">PDF generic functions</h2>
+<p>The <a href="https://www.reportlab.com/docs/reportlab-reference.pdf">reportlab</a> library, is a great tool, however, in its free version, we don&rsquo;t
+have a great support for hyperlinks in the text (usually it don&rsquo;t works). To fix
+that, we make a quickfix, using the native hyperlink method and setting up the
+hyperlink block.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-python" data-lang="python"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">pdfDrawLink</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">url</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">x</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">y</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">width</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">height</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">color</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#204a87;font-weight:bold">False</span><span style="color:#000;font-weight:bold">):</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span>    <span style="color:#4e9a06">&#39;&#39;&#39;
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span style="color:#4e9a06">    This function fix the link problem with the coordinates system.
@@ -894,6 +927,7 @@ run, which isn&rsquo;t scalable.</p>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33</span>        <span style="color:#8f5902;font-style:italic"># In theory, this should be capable to use page properties instead default coordinate system (bottom up, left right)</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34</span>    <span style="color:#000;font-weight:bold">)</span>
 </code></pre></div><h3 id="start">Start</h3>
+<p>The first pdf setup, and its meta informations.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-python" data-lang="python"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">pdf_Start</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">fileName</span><span style="color:#000;font-weight:bold">):</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span>    <span style="color:#204a87;font-weight:bold">global</span> <span style="color:#000">pgDim</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">xPos</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">yPos</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">page</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span>
@@ -914,6 +948,7 @@ run, which isn&rsquo;t scalable.</p>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span>    <span style="color:#000">page</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">setAuthor</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">author</span><span style="color:#000;font-weight:bold">)</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span>    <span style="color:#000">page</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">setSubject</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">subject</span><span style="color:#000;font-weight:bold">)</span>
 </code></pre></div><h3 id="title">Title</h3>
+<p>Draws the bigger text</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-python" data-lang="python"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">setTitle</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">t</span><span style="color:#000;font-weight:bold">):</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span>    <span style="color:#204a87;font-weight:bold">global</span> <span style="color:#000">page</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span>

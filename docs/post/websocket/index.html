@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    
+    <title>ppcamp</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Post under deployment
+Why you should use websocket? According to the book Websocket LightWeight Client-Server Communications:
+ WebSocket gives you the ability to use an upgraded HTTP request (Chapter 8 covers the particulars), and send data in a message-based way, similar to UDP and with all the reliability of TCP. This means a single connection, and the ability to send data back and forth between client and server with negligible penalty in resource utiliza‐ tion.">
+    <meta name="generator" content="Hugo 0.91.2" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+  
+
+
+    
+      
+<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+
+
+    
+
+    
+
+    <meta property="og:title" content="Websocket" />
+<meta property="og:description" content="Post under deployment
+Why you should use websocket? According to the book Websocket LightWeight Client-Server Communications:
+ WebSocket gives you the ability to use an upgraded HTTP request (Chapter 8 covers the particulars), and send data in a message-based way, similar to UDP and with all the reliability of TCP. This means a single connection, and the ability to send data back and forth between client and server with negligible penalty in resource utiliza‐ tion." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ppcamp.github.io/post/websocket/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-12-31T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-12-31T00:00:00+00:00" /><meta property="og:site_name" content="ppcamp" />
+
+<meta itemprop="name" content="Websocket">
+<meta itemprop="description" content="Post under deployment
+Why you should use websocket? According to the book Websocket LightWeight Client-Server Communications:
+ WebSocket gives you the ability to use an upgraded HTTP request (Chapter 8 covers the particulars), and send data in a message-based way, similar to UDP and with all the reliability of TCP. This means a single connection, and the ability to send data back and forth between client and server with negligible penalty in resource utiliza‐ tion."><meta itemprop="datePublished" content="2021-12-31T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2021-12-31T00:00:00+00:00" />
+<meta itemprop="wordCount" content="854">
+<meta itemprop="keywords" content="golang,websocket," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Websocket"/>
+<meta name="twitter:description" content="Post under deployment
+Why you should use websocket? According to the book Websocket LightWeight Client-Server Communications:
+ WebSocket gives you the ability to use an upgraded HTTP request (Chapter 8 covers the particulars), and send data in a message-based way, similar to UDP and with all the reliability of TCP. This means a single connection, and the ability to send data back and forth between client and server with negligible penalty in resource utiliza‐ tion."/>
+
+	<meta name="google-site-verification" content="-7z3LyXgISJuF4MIJXX9Vk9JW6M5M4-KW8a-Ps4FJDw" />
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        ppcamp
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/skills/" title="Skills page">
+              Skills
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="About me page">
+              About me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/post/" title="Articles page">
+              Articles
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        ARTICLES
+      </aside>
+      
+
+
+
+
+  <div id="sharing" class="mt3">
+
+    
+    <a href="https://www.facebook.com/sharer.php?u=https://ppcamp.github.io/post/websocket/" class="facebook no-underline" aria-label="share on Facebook">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+
+    </a>
+
+    
+    
+    <a href="https://twitter.com/share?url=https://ppcamp.github.io/post/websocket/&amp;text=Websocket" class="twitter no-underline" aria-label="share on Twitter">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+    </a>
+
+    
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://ppcamp.github.io/post/websocket/&amp;title=Websocket" class="linkedin no-underline" aria-label="share on LinkedIn">
+      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+    </a>
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">Websocket</h1>
+      
+      <p class="tracked">
+          By <strong>
+            
+                ppcamp
+            
+          </strong>
+      </p>
+      
+
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2021-12-31T00:00:00Z">
+        <b>Created at: </b>December 31, 2021
+
+      </time>
+      
+
+
+      
+      
+        <span class="f6 mv4 dib tracked"> <b>|</b> 5 minutes read </span>
+        <span class="f6 mv4 dib tracked"> <b>|</b> 854 words </span>
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p><strong>Post under deployment</strong></p>
+<h1 id="why-you-should-use-websocket">Why you should use websocket?</h1>
+<p>According to the book <a href="https://www.google.com.br/books/edition/WebSocket/BpaJCgAAQBAJ?hl=en&amp;gbpv=0">Websocket LightWeight Client-Server Communications</a>:</p>
+<blockquote>
+<p>WebSocket gives you the ability to use an upgraded HTTP request (Chapter 8 covers
+the particulars), and send data in a message-based way, similar to UDP and with all
+the reliability of TCP. This means a single connection, and the ability to send data
+back and forth between client and server with negligible penalty in resource utiliza‐
+tion. You can also layer another protocol on top of WebSocket, and provide it in a
+secure way over TLS. Later chapters dive deeper into these and other features such as
+heartbeating, origin domain, and more.</p>
+</blockquote>
+<p>In this same book, the author claims that using a <a href="https://www.pubnub.com/blog/http-long-polling/">long polling</a> technique will
+overhead your server resources.
+Basically, the flow that exemplifies the <a href="https://www.pubnub.com/blog/http-long-polling/">long polling</a> is described as</p>
+<div class="mermaid" style="text-align: center;">
+  
+sequenceDiagram
+  Client->>Server: Start a request and await until response
+  Server-->>Client: Server respond
+  Client->>Server: Close the current request and start a new one
+
+</div>
+<p>Another way of achieving this is to control the refresh rate in the client side
+by using <code>tickers</code> and basic requests, for example, imagine that you wanna make
+a social media feed.</p>
+<div class="mermaid" style="text-align: center;">
+  
+flowchart TD;
+  A([Client]) --> |start a ticker-loop| B{Ticker};
+  B --> |triggered| C[Make request to server];
+  B --> |no| D((Do nothing))
+  C --> E[Get response]
+  E --> |enqueue a new request| B
+  G([User]) --> |can stop the polling by removing| J[Remove the ticker call]
+
+</div>
+<p>To implement this you can, from time to time, make <code>GET</code>
+requests in a simple code using the <code>setTimeout</code> approach<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#204a87;font-weight:bold">const</span> <span style="color:#000">refresh</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span>  <span style="color:#4e9a06">&#39;REFRESH_TIME_MS&#39;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">3e3</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#8f5902;font-style:italic">// 3s
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#4e9a06">&#39;refresh_handler&#39;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span>  <span style="color:#4e9a06">&#39;stop&#39;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">async</span> <span style="color:#204a87;font-weight:bold">function</span> <span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span>    <span style="color:#000">clearInterval</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">this</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">refresh_handler</span><span style="color:#000;font-weight:bold">);</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span>  <span style="color:#000;font-weight:bold">},</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span>  <span style="color:#4e9a06">&#39;start&#39;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">async</span> <span style="color:#204a87;font-weight:bold">function</span> <span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span>    <span style="color:#8f5902;font-style:italic">// fetching data
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#8f5902;font-style:italic">// Default options are marked with *
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">const</span> <span style="color:#000">response</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">await</span> <span style="color:#000">fetch</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">url</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span>      <span style="color:#000">method</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#39;POST&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#8f5902;font-style:italic">// *GET, POST, PUT, DELETE, etc.
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span style="color:#8f5902;font-style:italic"></span>      <span style="color:#000">mode</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#39;cors&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#8f5902;font-style:italic">// no-cors, *cors, same-origin
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span style="color:#8f5902;font-style:italic"></span>      <span style="color:#000">cache</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#39;no-cache&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#8f5902;font-style:italic">// *default, no-cache, reload, force-cache, only-if-cached
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span style="color:#8f5902;font-style:italic"></span>      <span style="color:#000">credentials</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#39;same-origin&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#8f5902;font-style:italic">// include, *same-origin, omit
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span style="color:#8f5902;font-style:italic"></span>      <span style="color:#000">headers</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span>        <span style="color:#4e9a06">&#39;Content-Type&#39;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#39;application/json&#39;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span>        <span style="color:#8f5902;font-style:italic">// &#39;Content-Type&#39;: &#39;application/x-www-form-urlencoded&#39;,
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span style="color:#8f5902;font-style:italic"></span>      <span style="color:#000;font-weight:bold">},</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span>      <span style="color:#000">redirect</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#39;follow&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#8f5902;font-style:italic">// manual, *follow, error
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span style="color:#8f5902;font-style:italic"></span>      <span style="color:#000">referrerPolicy</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#39;no-referrer&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#8f5902;font-style:italic">// no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span style="color:#8f5902;font-style:italic"></span>      <span style="color:#000">body</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000">JSON</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">stringify</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">data</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic">// body data type must match &#34;Content-Type&#34; header
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000;font-weight:bold">});</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span>    <span style="color:#000">console</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">log</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;Got data&#39;</span><span style="color:#000;font-weight:bold">);</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span>    <span style="color:#8f5902;font-style:italic">// enqeue a new call to refresh fn
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">this</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">refresh_handler</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">setInterval</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">refresh</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">this</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">REFRESH_TIME_MS</span><span style="color:#000;font-weight:bold">);</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span>    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">response</span><span style="color:#000;font-weight:bold">;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span>  <span style="color:#000;font-weight:bold">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31</span><span style="color:#000;font-weight:bold">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33</span><span style="color:#8f5902;font-style:italic">// make requests from time to time
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000">refresh</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">start</span><span style="color:#000;font-weight:bold">()</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36</span><span style="color:#8f5902;font-style:italic">// clear the object from the queue (stop polling)
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37</span><span style="color:#8f5902;font-style:italic">// refresh.stop()
+</span></code></pre></div><p>Anyway, basically, when using a websocket connection you&rsquo;ll be able to:</p>
+<ul>
+<li>keep a connection alive, without overhead your server</li>
+<li>send biderectional messages anytime, giving you a connection &ldquo;based on events&rdquo;<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></li>
+<li>due to the item above, you basically have a <strong>real-time</strong> environment.</li>
+<li><a href="https://stackoverflow.com/questions/44898882/why-to-use-websocket-and-what-is-the-advantage-of-using-it">low latency</a></li>
+</ul>
+<p>However, the websocket approach will force you to have <strong>more goroutines open</strong>
+in a <em>Golang</em> environment.</p>
+<p><img src="https://qph.fs.quoracdn.net/main-qimg-56548855e60ebb055d328e4400a1b916.webp" alt="websocket connections meme"></p>
+<p>Basically, at this point, I&rsquo;m assuming that you
+already searched about websockets, and you do know that every technology has a
+treadoff<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>.</p>
+<p>What I&rsquo;m trying to say is:</p>
+<blockquote>
+<p>&ldquo;Don&rsquo;t use a hammer for a screw&rdquo;</p>
+</blockquote>
+<p>Let&rsquo;s talk about the code itself.</p>
+<h1 id="part-1">Part 1</h1>
+<p>In this part, I plan to reach the project described in the
+<a href="https://www.google.com.br/books/edition/WebSocket/BpaJCgAAQBAJ?hl=en&amp;gbpv=0">Websocket LightWeight Client-Server Communications</a> book. The code itself
+can be found in this <a href="https://github.com/ppcamp/go-websocket/tree/book-ch3">link</a>.</p>
+<h2 id="htmlclient-view">HTML/Client view</h2>
+<p>Basic html header to use <a href="https://getbootstrap.com/docs/versions/">Bootstrap v3.2.0</a> (<a href="https://github.com/ppcamp/go-websocket/blob/book-ch3/public/index.html">link</a>).</p>
+<p>With the HTML/Client code in hands, you&rsquo;ll need to make the server part.</p>
+<h2 id="server">Server</h2>
+<p>The server uses the <a href="https://github.com/gorilla/websocket">gorilla</a> library. In the project, you can find some samples
+about how to implement a websocket server. In this project, I took the
+<a href="https://github.com/gorilla/websocket/tree/master/examples/chat">chat example</a>
+as a base to developed code.</p>
+<p>Here is the folder structure until now:</p>
+<pre tabindex="0"><code>.
+├── public
+│   └── index.html
+├── README.md
+└── src
+    ├── cmd
+    │   └── main.go
+    ├── go.mod
+    ├── go.sum
+    ├── internal
+    │   ├── app
+    │   │   └── run.go
+    │   ├── config
+    │   │   ├── app.go
+    │   │   ├── date.go
+    │   │   ├── flags.go
+    │   │   └── log.go
+    │   └── controllers
+    │       ├── home.go
+    │       └── websocket.go
+    └── pkg
+        ├── helpers
+        │   ├── log.go
+        │   └── websocket.go
+        ├── models
+        ├── repository
+        ├── services
+        │   └── websocket
+        │       ├── client.go
+        │       ├── events.go
+        │       ├── model.go
+        │       └── server.go
+        └── utils
+            ├── must.go
+            └── string.go
+</code></pre><p>In the main fn I use the [cli] to read the environment variables and create
+helpers to the binary.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-go" data-lang="go"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#204a87;font-weight:bold">package</span> <span style="color:#000">main</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000;font-weight:bold">(</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span>	<span style="color:#4e9a06">&#34;github.com/urfave/cli/v2&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span>	<span style="color:#4e9a06">&#34;os&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span>	<span style="color:#4e9a06">&#34;src/internal/app&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span>	<span style="color:#4e9a06">&#34;src/internal/config&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span style="color:#204a87;font-weight:bold">func</span> <span style="color:#000">main</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span>	<span style="color:#000">application</span> <span style="color:#ce5c00;font-weight:bold">:=</span> <span style="color:#000">cli</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">NewApp</span><span style="color:#000;font-weight:bold">()</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span>	<span style="color:#000">application</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Name</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;go-websocket&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span>	<span style="color:#000">application</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Description</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;A Golang simple websocket server&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span>	<span style="color:#000">application</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Usage</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;go-websocket server || go-websocket client &#39;name&#39;&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span>	<span style="color:#000">application</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Flags</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#000">config</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Flags</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span>	<span style="color:#000">application</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Action</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#000">app</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Run</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span>	<span style="color:#000">application</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Run</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">os</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Args</span><span style="color:#000;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p><a href="https://brianchildress.co/simple-polling-using-settimeout/">Here</a>, or
+<a href="https://btholt.github.io/complete-intro-to-realtime/settimeout">here</a>
+you can see a good way to visualise it.
+You must avoid use the <code>setInterval</code> because it can, sometimes, block your
+main thread. Furthermore, it may force your program to keep open, even if you
+closed your app &lsquo;cause it&rsquo;ll stay in the threadpool/mainloop. Check it out
+<a href="https://weblogs.asp.net/bleroy/setinterval-is-moderately-evil">here</a>, or
+<a href="https://dev.to/akanksha_9560/why-not-to-use-setinterval--2na9#:~:text=In%20case%20of%20time%20intensive,clearInterval%20function%20to%20stop%20it.">here</a> to read more about it.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p><a href="https://stackoverflow.com/questions/31035467/for-a-push-notification-is-a-websocket-mandatory/31042439#31042439">Websocket for push notifications</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3" role="doc-endnote">
+<p><a href="https://blogs.windows.com/windowsdeveloper/2016/03/14/when-to-use-a-http-call-instead-of-a-websocket-or-http-2-0/">When use a http or a websocket</a>&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+<ul class="pa0">
+  
+   <li class="list">
+     <a href="/tags/golang" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">golang</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/websocket" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">websocket</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "ppcamp" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://ppcamp.github.io" >
+    &copy;  ppcamp 2021 
+  </a>
+    <div>
+
+
+
+
+
+
+
+<a href="https://www.linkedin.com/in/ppcamp/" target="_blank" class="link-transition linkedin link dib z-999 pt3 pt0-l mr1" title="LinkedIn link" rel="noopener" aria-label="follow on LinkedIn——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+<a href="https://github.com/ppcamp" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

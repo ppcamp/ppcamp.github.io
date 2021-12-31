@@ -8,6 +8,17 @@
     <language>en-us</language>
     <lastBuildDate>Thu, 02 Mar 2017 12:00:00 -0500</lastBuildDate><atom:link href="https://ppcamp.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Websocket</title>
+      <link>https://ppcamp.github.io/post/websocket/</link>
+      <pubDate>Fri, 31 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://ppcamp.github.io/post/websocket/</guid>
+      <description>Post under deployment
+Why you should use websocket? According to the book Websocket LightWeight Client-Server Communications:
+ WebSocket gives you the ability to use an upgraded HTTP request (Chapter 8 covers the particulars), and send data in a message-based way, similar to UDP and with all the reliability of TCP. This means a single connection, and the ability to send data back and forth between client and server with negligible penalty in resource utiliza‐ tion.</description>
+    </item>
+    
+    <item>
       <title>COVID’s report of Itabira city</title>
       <link>https://ppcamp.github.io/post/covid19-itabira/</link>
       <pubDate>Sun, 05 Dec 2021 00:00:00 +0000</pubDate>

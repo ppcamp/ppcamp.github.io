@@ -6,7 +6,7 @@
     <description>Recent content in ___ on ppcamp</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 05 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://ppcamp.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 31 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://ppcamp.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Skills</title>
       <link>https://ppcamp.github.io/skills/</link>
@@ -20,6 +20,17 @@
   Postgresql
   MongoDB
   Others programming languages  Html CSS Bash script JS Jquery Matlab/Octave  Operational Systems  Debian based systems (Kubuntu, Ubuntu, Deepin) Windows 8.</description>
+    </item>
+    
+    <item>
+      <title>Websocket</title>
+      <link>https://ppcamp.github.io/post/websocket/</link>
+      <pubDate>Fri, 31 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://ppcamp.github.io/post/websocket/</guid>
+      <description>Post under deployment
+Why you should use websocket? According to the book Websocket LightWeight Client-Server Communications:
+ WebSocket gives you the ability to use an upgraded HTTP request (Chapter 8 covers the particulars), and send data in a message-based way, similar to UDP and with all the reliability of TCP. This means a single connection, and the ability to send data back and forth between client and server with negligible penalty in resource utiliza‐ tion.</description>
     </item>
     
     <item>

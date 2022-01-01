@@ -10,6 +10,7 @@ blog).
 - [How to add fontawesome in hugo](https://matze.rocks/posts/fontawesome_in_hugo/)
 - [Mermaid graphs](https://mermaid-js.github.io/mermaid/#/flowchart)
 - [Adding diagrams to websites](https://codewithhugo.com/mermaid-js-hugo-shortcode/)
+- [Create shortcodes hugo](https://gohugo.io/templates/shortcode-templates/)
 
 ## Tips
 

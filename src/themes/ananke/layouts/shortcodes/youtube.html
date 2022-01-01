@@ -1,0 +1,29 @@
+<div class="container">
+{{ if .IsNamedParams }}
+  <iframe
+    {{ if or (.Get "width") (.Get "height") }}
+      width="{{ if .Get "width" }}{{ .Get "width" }}{{ else }}560{{ end }}"
+      height="{{ if .Get "height" }}{{ .Get "height" }}{{ else }}315{{ end }}"
+    {{ else }}
+      class="video"
+    {{ end }}
+    src="{{ .Get "url" }}"
+    title="{{ if .Get "title" }}{{ .Get "title" }}{{ else }}YouTube video player{{ end }}"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media;gyroscope; picture-in-picture"
+    allowfullscreen></iframe>
+{{ else }}
+  <iframe
+    class="video"
+    src="{{ .Get 0 }}"
+    title="{{ if .Get "title" }}{{ .Get "title" }}{{ else }}YouTube video player{{ end }}"
+    frameborder="0"
+    allow="accelerometer;
+    autoplay;
+    clipboard-write;
+    encrypted-media;
+    gyroscope;
+    picture-in-picture"
+    allowfullscreen></iframe>
+{{ end }}
+</div>

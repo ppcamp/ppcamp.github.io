@@ -17,7 +17,7 @@ build:
 	rm -rfd ./docs/*
 	@echo ""
 	@echo "2. Building hugo"
-	cd src && hugo --destination=../docs
+	cd src && HUGO_ENV="production" hugo --destination=../docs
 	@echo ""
 	@echo "Finished!"
 

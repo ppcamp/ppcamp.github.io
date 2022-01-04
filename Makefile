@@ -24,7 +24,7 @@ build:
 	minify -r -o ./public --match=\.html --html-keep-document-tags --html-keep-end-tags ./docs
 	@echo ""
 	@echo "4. Cleaning up"
-	echo rm -rfd ./public
+	rm -rfd ./public
 	@echo ""
 	@echo "Finished!"
 

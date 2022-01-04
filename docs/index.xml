@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>___ on ppcamp</title>
+    <link>https://ppcamp.github.io/</link>
+    <description>Recent content in ___ on ppcamp</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 31 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://ppcamp.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Skills</title>
+      <link>https://ppcamp.github.io/skills/</link>
+      <pubDate>Sun, 31 Oct 2021 13:25:11 -0200</pubDate>
+      
+      <guid>https://ppcamp.github.io/skills/</guid>
+      <description>Programming languages and frameworks:   Golang (currently, my main programming lang)
+ Using: gin; cli; sqlx; graphql-go; aws-sdk; testify; statik; logrus; gomigrate    Python
+ Python Numpy Pandas Scrappy Requests Bs4 Selenium Seaborn Plotly Matplotlib Scipy Requests (focused in scrapping)    C/C++
+ Focused in C++2014    Java
+  Postgresql
+  MongoDB
+  Others programming languages  Html CSS Bash script JS Jquery Matlab/Octave  Operational Systems  Debian based systems (Kubuntu, Ubuntu, Deepin) Windows 8.</description>
+    </item>
+    
+    <item>
+      <title>Websocket</title>
+      <link>https://ppcamp.github.io/post/websocket/</link>
+      <pubDate>Fri, 31 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://ppcamp.github.io/post/websocket/</guid>
+      <description>Post under deployment
+What&amp;rsquo;s websocket? Websocket is a technology that is used to swap messages between two or more peers without create a HTTP request connection every time. It&amp;rsquo;s usually used to create real-time web applications, social network feeds, PWA and push notifications, chats, etc. In Ubuntu based distributions, for example, you can use a websocket server that will have a thread to every amount of time, refresh some data and trigger a new event, making system-calls to the notify-send program, which will show you a notification in your desktop.</description>
+    </item>
+    
+    <item>
+      <title>COVID’s report of Itabira city</title>
+      <link>https://ppcamp.github.io/post/covid19-itabira/</link>
+      <pubDate>Sun, 05 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://ppcamp.github.io/post/covid19-itabira/</guid>
+      <description>In this page I&amp;rsquo;ll try to explain to you how to built a simple script that generates a refreshed report basing on some spreadsheet. In this case, this file was used by Itabira&amp;rsquo;s health secretary. The project can be found here.
+Context Since the first cases of the covid&amp;rsquo;s in Itabira, the Health Secretary ordered to generate a report to show to the citiziens what was happenning and the current situation of the city daily.</description>
+    </item>
+    
+    <item>
+      <title>Graphql go</title>
+      <link>https://ppcamp.github.io/post/graphql-go/</link>
+      <pubDate>Fri, 05 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://ppcamp.github.io/post/graphql-go/</guid>
+      <description>What&amp;rsquo;s this so well know graphql? Go&amp;rsquo;tcha, I won&amp;rsquo;t discuss about this at all LoL.
+Take a look in those articles below:
+ https://www.moesif.com/blog/technical/graphql/REST-vs-GraphQL-APIs-the-good-the-bad-the-ugly/ https://blog.logrocket.com/why-you-shouldnt-use-graphql/ https://www.apollographql.com/docs/react/data/operation-best-practices/ https://graphql.org/ https://www.youtube.com/watch?v=epKhPB9PJqY&amp;amp;ab_channel=Simplilearn  But, personally, what I think about it:
+Good points:
+ It can be interesting when the amount of data of each request is relevant (mobile/lightweight apps) It can be interesting doing to the reuse of existent resolvers for our types (you&amp;rsquo;ll see an example in this project) It&amp;rsquo;s easier to the backend developer to handle with the errors (without worring about status codes, padronized response bodies and go on) It&amp;rsquo;s interesting to have a panel where you can see all available types/queries/mutations and its descriptions  Bad points:</description>
+    </item>
+    
+    <item>
+      <title>Next posts</title>
+      <link>https://ppcamp.github.io/post/next-posts/</link>
+      <pubDate>Mon, 01 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://ppcamp.github.io/post/next-posts/</guid>
+      <description>What I plan to do next Bellow you can see what I want to do, following this order
+ Itabira&amp;rsquo;s health secretariat ombudsman report: A script that access the spreadsheet and generates a report with plots. AFDN animator: How to build a simple afdn animator in rust Sigaa scrapper: A script that access the Sigaa&amp;rsquo;s system, and then, generates plots and infereces about it API&amp;rsquo;s builded in Golang (focused on speed) vs API&amp;rsquo;s focused in deployment time: A simple use case and personal thoughts about when using each one of them.</description>
+    </item>
+    
+    <item>
+      <title>About me</title>
+      <link>https://ppcamp.github.io/about/</link>
+      <pubDate>Sun, 31 Oct 2021 13:05:15 -0300</pubDate>
+      
+      <guid>https://ppcamp.github.io/about/</guid>
+      <description>Hi, my name is Pedro Augusto C Santos, I’m graduating in Computer Engineering college in Unifei — Campus Itabira. I’m focusing in my programming and teaching skills.
+Programmer My objective as a developer it’s impulsionate and divulgate the open source community — empahisis in linux based distributions and dev tools similars. The current areas that I’m interested for it’s: Big Data, Web Scrapers and automatization process, and Back-end part at General.</description>
+    </item>
+    
+  </channel>
+</rss>

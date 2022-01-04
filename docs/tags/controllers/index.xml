@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>controllers on ppcamp</title>
+    <link>https://ppcamp.github.io/tags/controllers/</link>
+    <description>Recent content in controllers on ppcamp</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 05 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://ppcamp.github.io/tags/controllers/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Graphql go</title>
+      <link>https://ppcamp.github.io/post/graphql-go/</link>
+      <pubDate>Fri, 05 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://ppcamp.github.io/post/graphql-go/</guid>
+      <description>What&amp;rsquo;s this so well know graphql? Go&amp;rsquo;tcha, I won&amp;rsquo;t discuss about this at all LoL.
+Take a look in those articles below:
+ https://www.moesif.com/blog/technical/graphql/REST-vs-GraphQL-APIs-the-good-the-bad-the-ugly/ https://blog.logrocket.com/why-you-shouldnt-use-graphql/ https://www.apollographql.com/docs/react/data/operation-best-practices/ https://graphql.org/ https://www.youtube.com/watch?v=epKhPB9PJqY&amp;amp;ab_channel=Simplilearn  But, personally, what I think about it:
+Good points:
+ It can be interesting when the amount of data of each request is relevant (mobile/lightweight apps) It can be interesting doing to the reuse of existent resolvers for our types (you&amp;rsquo;ll see an example in this project) It&amp;rsquo;s easier to the backend developer to handle with the errors (without worring about status codes, padronized response bodies and go on) It&amp;rsquo;s interesting to have a panel where you can see all available types/queries/mutations and its descriptions  Bad points:</description>
+    </item>
+    
+  </channel>
+</rss>

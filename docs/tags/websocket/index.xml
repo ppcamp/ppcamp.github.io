@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>websocket on ppcamp</title>
+    <link>https://ppcamp.github.io/tags/websocket/</link>
+    <description>Recent content in websocket on ppcamp</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 31 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://ppcamp.github.io/tags/websocket/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Websocket</title>
+      <link>https://ppcamp.github.io/post/websocket/</link>
+      <pubDate>Fri, 31 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://ppcamp.github.io/post/websocket/</guid>
+      <description>Post under deployment
+What&amp;rsquo;s websocket? Websocket is a technology that is used to swap messages between two or more peers without create a HTTP request connection every time. It&amp;rsquo;s usually used to create real-time web applications, social network feeds, PWA and push notifications, chats, etc. In Ubuntu based distributions, for example, you can use a websocket server that will have a thread to every amount of time, refresh some data and trigger a new event, making system-calls to the notify-send program, which will show you a notification in your desktop.</description>
+    </item>
+    
+  </channel>
+</rss>

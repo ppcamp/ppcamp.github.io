@@ -21,7 +21,7 @@ build:
 	cd src && HUGO_ENV="production" hugo --destination=../public
 	@echo ""
 	@echo "3. Minifying the HTML"
-	minify -r -o ./public --match=\.html --html-keep-document-tags --html-keep-end-tags ./docs
+	minify -r -o docs --match=\.html --html-keep-document-tags --html-keep-end-tags public
 	@echo ""
 	@echo "4. Cleaning up"
 	rm -rfd ./public

@@ -1,0 +1,9 @@
+{{ if .IsNamedParams }}
+<span style="padding-right:3px; display:inline-block;">
+  <img  src="{{ .Get "url" }}" alt="Badge"></img>
+</span>
+{{ else }}
+<span style="padding-right:3px; padding-top: 3px; display:inline-block;">
+  <img  src="{{ .Get 0 }}" alt="Badge"></img>
+</span>
+{{ end }}

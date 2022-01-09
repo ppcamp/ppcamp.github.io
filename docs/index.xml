@@ -13,13 +13,8 @@
       <pubDate>Sun, 31 Oct 2021 13:25:11 -0200</pubDate>
       
       <guid>https://ppcamp.github.io/skills/</guid>
-      <description>Programming languages and frameworks:   Golang (currently, my main programming lang)
- Using: gin; cli; sqlx; graphql-go; aws-sdk; testify; statik; logrus; gomigrate    Python
- Python Numpy Pandas Scrappy Requests Bs4 Selenium Seaborn Plotly Matplotlib Scipy Requests (focused in scrapping)    C/C++
- Focused in C++2014    Java
-  Postgresql
-  MongoDB
-  Others programming languages  Html CSS Bash script JS Jquery Matlab/Octave  Operational Systems  Debian based systems (Kubuntu, Ubuntu, Deepin) Windows 8.</description>
+      <description>All of them are ordered by current domain
+Programming languages and frameworks     (Currently my main stack).  gin cli sqlx graphql-go aws-sdk testify statik logrus gomigrate gorilla-websocket       Numpy Pandas Scrapy Requests Bs4 Selenium Seaborn Plotly Matplotlib Scipy      /           (Focused in C++2014)                                  Databases and tools                               Others           Operational Systems     Debian based systems (Kubuntu, Ubuntu, Deepin)    Windows 8.</description>
     </item>
     
     <item>
@@ -72,7 +67,7 @@ Good points:
       
       <guid>https://ppcamp.github.io/about/</guid>
       <description>Hi, my name is Pedro Augusto C Santos, I’m graduating in Computer Engineering college in Unifei — Campus Itabira. I’m focusing in my programming and teaching skills.
-Programmer My objective as a developer it’s impulsionate and divulgate the open source community — empahisis in linux based distributions and dev tools similars. The current areas that I’m interested for it’s: Big Data, Web Scrapers and automatization process, and Back-end part at General.</description>
+👨‍💻 Programmer My objective as a developer it’s impulsionate and divulgate the open source community — empahisis in linux based distributions and dev tools similars. The current areas that I’m interested for it’s: Big Data, Web Scrapers and automatization process, and Back-end part at General.</description>
     </item>
     
   </channel>

@@ -1461,6 +1461,11 @@ pgDim = {'w':792,'h':1150}
 
 getExternal(fileName)
 ```
+
+
+{{<thanks>}}
+
+
 <!-- LINKS -->
 
 [covid]: https://www.google.com/search?q=covid&sxsrf=AOaemvJw0qWYU1KermVSBcEOVxlP149S2A%3A1638738696509&source=hp&ei=CCutYYXTHIGc5OUP3qSMmAg&iflsig=ALs-wAMAAAAAYa05GBqL0jw9bS11YqS3TUqLMjAAXk4m&ved=0ahUKEwiF94evyc30AhUBDrkGHV4SA4MQ4dUDCAc&uact=5&oq=covid&gs_lcp=Cgdnd3Mtd2l6EAMyBAgjECcyBAgAEEMyBAgAEEMyBAgAEEMyBAgAEEMyBwgAEMkDEEMyBQgAEJIDMgUIABCSAzIECAAQQzIFCAAQywFQAFjAA2DTBmgAcAB4AIABdogBuwSSAQMwLjWYAQCgAQE&sclient=gws-wiz

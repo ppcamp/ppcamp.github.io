@@ -23,8 +23,7 @@ Programming languages and frameworks     (Currently my main stack).  gin cli sql
       <pubDate>Fri, 31 Dec 2021 00:00:00 +0000</pubDate>
       
       <guid>https://ppcamp.github.io/post/websocket/</guid>
-      <description>Post under deployment
-What&amp;rsquo;s websocket? Websocket is a technology that is used to swap messages between two or more peers without create a HTTP request connection every time. It&amp;rsquo;s usually used to create real-time web applications, social network feeds, PWA and push notifications, chats, etc. In Ubuntu based distributions, for example, you can use a websocket server that will have a thread to every amount of time, refresh some data and trigger a new event, making system-calls to the notify-send program, which will show you a notification in your desktop.</description>
+      <description>What&amp;rsquo;s websocket? Websocket is a technology that is used to swap messages between two or more peers without create a HTTP request connection every time. It&amp;rsquo;s usually used to create real-time web applications, social network feeds, PWA and push notifications, chats, etc. In Ubuntu based distributions, for example, you can use a websocket server that will have a thread to every amount of time, refresh some data and trigger a new event, making system-calls to the notify-send program, which will show you a notification in your desktop.</description>
     </item>
     
     <item>

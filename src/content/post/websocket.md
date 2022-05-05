@@ -9,7 +9,6 @@ featured_image: "/images/go-websocket-2.png"
 mermaid: true
 ---
 
-**Post under deployment**
 
 # What's websocket?
 
@@ -695,7 +694,7 @@ to implement websocket, when use, and the treadoffs of using it.
 Feel free to send me a message improving this code or making some appointments
 about my text.
 
-Best regards @ppcamp
+{{<thanks>}}
 
 
 <!--                            Footnotes

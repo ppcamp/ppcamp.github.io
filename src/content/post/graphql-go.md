@@ -1,6 +1,6 @@
 ---
 date: 2021-11-05T00:00:00-00:00
-lastmod: 2021-11-10T20:42:44-03:00
+lastmod: 2022-05-05T00:00:00-00:00
 show_reading_time: true
 tags: ["graphql", "go", "graphql-go", "controllers", "project structure"]
 featured_image: "/images/graphql-go_1.png"
@@ -828,6 +828,8 @@ but let me told you what needs to be done:
 - refactor the controllers module
 - create new type/resolve/repository for books (a user has books)
 - create unitary tests.
+- a good approach should be limit the depth of the query search, otherwise, the frontend user may
+  create a huge query, which can, sometimes, broke the server.
 
 
 If I made some mistake, or if you have some suggestion, ping me in the
@@ -835,9 +837,7 @@ discussion below or send me a message.
 
 The full project can be found [here][project].
 
-Best regards,
-
-@ppcamp
+{{<thanks>}}
 
 
 ### Another links

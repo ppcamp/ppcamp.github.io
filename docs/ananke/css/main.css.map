@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "main.css",
-	"sourceRoot": "/mnt/d/git/ppcamp.github.io/src",
+	"sourceRoot": "/home/ppcamp/git/ppcamp.github.io/src",
 	"sources": [
 		"stdin"
 	],

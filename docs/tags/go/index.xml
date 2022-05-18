@@ -6,7 +6,16 @@
     <description>Recent content in go on ppcamp</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 05 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://ppcamp.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 05 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://ppcamp.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>gRPC &amp; microservices in Go</title>
+      <link>https://ppcamp.github.io/post/grpc-microservices/</link>
+      <pubDate>Thu, 05 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://ppcamp.github.io/post/grpc-microservices/</guid>
+      <description>Brief introduction to microservices Database per service pattern SAGA pattern Orchestration Event-like gRPC Why use proxies? How to redirect? Best regards, @ppcamp </description>
+    </item>
+    
     <item>
       <title>Graphql go</title>
       <link>https://ppcamp.github.io/post/graphql-go/</link>

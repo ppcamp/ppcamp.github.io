@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>grpc-web on ppcamp</title>
+    <link>https://ppcamp.github.io/tags/grpc-web/</link>
+    <description>Recent content in grpc-web on ppcamp</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 05 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://ppcamp.github.io/tags/grpc-web/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>gRPC &amp; microservices in Go</title>
+      <link>https://ppcamp.github.io/post/grpc-microservices/</link>
+      <pubDate>Thu, 05 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://ppcamp.github.io/post/grpc-microservices/</guid>
+      <description>Brief introduction to microservices Database per service pattern SAGA pattern Orchestration Event-like gRPC Why use proxies? How to redirect? Best regards, @ppcamp </description>
+    </item>
+    
+  </channel>
+</rss>

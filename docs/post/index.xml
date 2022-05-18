@@ -8,6 +8,15 @@
     <language>en-us</language>
     <lastBuildDate>Thu, 02 Mar 2017 12:00:00 -0500</lastBuildDate><atom:link href="https://ppcamp.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>gRPC &amp; microservices in Go</title>
+      <link>https://ppcamp.github.io/post/grpc-microservices/</link>
+      <pubDate>Thu, 05 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://ppcamp.github.io/post/grpc-microservices/</guid>
+      <description>Brief introduction to microservices Database per service pattern SAGA pattern Orchestration Event-like gRPC Why use proxies? How to redirect? Best regards, @ppcamp </description>
+    </item>
+    
+    <item>
       <title>Websocket</title>
       <link>https://ppcamp.github.io/post/websocket/</link>
       <pubDate>Fri, 31 Dec 2021 00:00:00 +0000</pubDate>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>setup on ppcamp</title>
+    <link>https://ppcamp.github.io/tags/setup/</link>
+    <description>Recent content in setup on ppcamp</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 22 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://ppcamp.github.io/tags/setup/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dev environment in vscode using containers</title>
+      <link>https://ppcamp.github.io/post/vscode-container-env/</link>
+      <pubDate>Sun, 22 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://ppcamp.github.io/post/vscode-container-env/</guid>
+      <description>Introduction Usually programmers need to have multiple environments, when its attributions depends on maintaining legacies programs.
+The problem If you need some library or resource that only exist in a specific version, you&amp;rsquo;ll need to work with it, and due to this, you&amp;rsquo;ll need to have multiple environments.
+Some approaches To achieve this, you can try multiples approaches, like use a virtual machine (a virtual box, for example). Another good approach, is having virtual environments, however, this approach is not generic, hence it depends on tools built for each language, for example, to nodejs you can use nvm, to python, you can use venv.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -6,7 +6,7 @@
     <description>Recent content in ___ on ppcamp</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 05 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://ppcamp.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 22 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://ppcamp.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Skills</title>
       <link>https://ppcamp.github.io/skills/</link>
@@ -15,6 +15,17 @@
       <guid>https://ppcamp.github.io/skills/</guid>
       <description>All of them are ordered by current domain
 Programming languages and frameworks     (Currently my main stack).  gin cli sqlx graphql-go aws-sdk testify statik logrus gomigrate gorilla-websocket       Numpy Pandas Scrapy Requests Bs4 Selenium Seaborn Plotly Matplotlib Scipy      /           (Focused in C++2014)                                  Databases and tools                               Others           Operational Systems     Debian based systems (Kubuntu, Ubuntu, Deepin)    Windows 8.</description>
+    </item>
+    
+    <item>
+      <title>Dev environment in vscode using containers</title>
+      <link>https://ppcamp.github.io/post/vscode-container-env/</link>
+      <pubDate>Sun, 22 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://ppcamp.github.io/post/vscode-container-env/</guid>
+      <description>Introduction Usually programmers need to have multiple environments, when its attributions depends on maintaining legacies programs.
+The problem If you need some library or resource that only exist in a specific version, you&amp;rsquo;ll need to work with it, and due to this, you&amp;rsquo;ll need to have multiple environments.
+Some approaches To achieve this, you can try multiples approaches, like use a virtual machine (a virtual box, for example). Another good approach, is having virtual environments, however, this approach is not generic, hence it depends on tools built for each language, for example, to nodejs you can use nvm, to python, you can use venv.</description>
     </item>
     
     <item>
